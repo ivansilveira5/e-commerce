@@ -18,10 +18,12 @@
 
   <body class="min-h-screen flex flex-col justify-between bg-[#0F212E]">
     <main class="flex justify-center items-center m-auto">
+      
       <div
         class="flex flex-col bg-[#ffffff] px-10 py-10 rounded-sm items-center"
       >
         <img class="" src="img/login.png" alt="" width="300" />
+        <form>
         <div class="flex justify-center w-full space-x-5 px-3">
           <label class="font-semibold my-2 w-full"
             >Nombre
@@ -42,7 +44,8 @@
         </div>
         <div class="flex justify-center w-full space-x-5 px-3">
           <label class="font-semibold my-2 w-full"
-            >Correo electronico <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
+            >Correo electronico
+            <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
             <input
               type="email"
               class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
@@ -51,7 +54,8 @@
             />
           </label>
           <label class="font-semibold my-2 w-full"
-            >Repetir correo electronico <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
+            >Repetir correo electronico
+            <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
             <input
               type="email"
               class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
@@ -62,7 +66,8 @@
         </div>
         <div class="flex justify-center w-full space-x-5 px-3">
           <label class="font-semibold my-2 w-full"
-            >Contraseña <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
+            >Contraseña
+            <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
             <input
               type="password"
               class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
@@ -71,7 +76,8 @@
             />
           </label>
           <label class="font-semibold my-2 w-full">
-            Repetir contraseña <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
+            Repetir contraseña
+            <span title="Campo Obligatorio!" class="text-red-500">( * )</span>
             <input
               type="password"
               class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
@@ -82,12 +88,13 @@
         </div>
         <div class="my-4 items-center flex justify-center">
           <button
-            type="button"
+            type="submit"
             class="bg-orange-500 hover:bg-orange-400 p-2 px-4 rounded-md text-white font-bold text-lg shadow-md"
           >
             Registrate
           </button>
         </div>
+        </form>
         <div
           class="text-orange-600 underline text-lg font-semibold flex justify-between"
         >
@@ -96,6 +103,7 @@
           >
         </div>
       </div>
+    
     </main>
     <footer class="bg-black/50 text-white min-h-28">
       <div class="space-y-1">
