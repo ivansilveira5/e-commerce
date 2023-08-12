@@ -8,13 +8,17 @@
     />
     <title>eMercado - Todo lo que busques está aquí</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/login.js"></script>
+   
     <link
       href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
       rel="stylesheet"
     />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <script> if (localStorage.getItem('loggedin') === 'true') {
+      location.href='index.html' }   
+      </script>
+  
   </head>
 
   <body class="min-h-screen flex flex-col justify-between bg-[#0F212E]">
@@ -25,37 +29,37 @@
         <h1 class="font-bold text-2xl mt-4 mb-3 text-black/70 text-center">
           Inicio de sesión
         </h1>
-        <form>
-        <div class="flex justify-center w-full px-3">
-          <label class="font-semibold my-2 w-full"
-            >Email
-            <input
-              type="email"
-              class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
-              placeholder="Email"
-              required
-            />
-          </label>
-        </div>
-        <div class="flex justify-center w-full px-3">
-          <label class="font-semibold my-2 w-full"
-            >Contraseña
-            <input
-              type="password"
-              class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
-              placeholder="Contraseña"
-              required
-            />
-          </label>
-        </div>
-        <div class="my-4 items-center flex justify-center">
-          <button
-            type="button"
-            class="bg-orange-500 hover:bg-orange-400 p-2 px-4 rounded-md text-white font-bold text-lg shadow-md"
-          >
-            Ingresar
-          </button>
-        </div>
+        <form action="/">
+          <div class="flex justify-center w-full px-3">
+            <label class="font-semibold my-2 w-full"
+              >Email
+              <input
+                type="email"
+                class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
+                placeholder="Email"
+                required
+              />
+            </label>
+          </div>
+          <div class="flex justify-center w-full px-3">
+            <label class="font-semibold my-2 w-full"
+              >Contraseña
+              <input
+                type="password"
+                class="shadow-sm h-8 mt-2 border-2 border-slate-300 outline-none focus:border-orange-400 rounded-md p-1 w-full"
+                placeholder="Contraseña"
+                required
+              />
+            </label>
+          </div>
+          <div class="my-4 items-center flex justify-center">
+            <button id="buttonsubmit" 
+              type="button"
+              class="bg-orange-500 hover:bg-orange-400 p-2 px-4 rounded-md text-white font-bold text-lg shadow-md"
+            >
+              Ingresar
+            </button>
+          </div>
         </form>
         <div
           class="text-orange-600 underline text-lg font-semibold flex justify-between"
@@ -66,7 +70,6 @@
           <a class="hover:text-orange-400" href="register.html">Registrarme</a>
         </div>
       </div>
-    
     </main>
     <footer class="bg-black/50 text-white min-h-28">
       <div class="space-y-1">
@@ -95,5 +98,6 @@
         <div></div>
       </div>
     </div>
+    <script src="js/login.js"></script>
   </body>
 </html>

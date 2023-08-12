@@ -1,3 +1,4 @@
+
 const apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
 // Función para realizar la petición web
@@ -13,3 +14,4 @@ const apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json'
   } catch (error) {
     console.error('Ha ocurrido un error:', error);
   }
+
