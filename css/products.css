@@ -1,0 +1,57 @@
+.stylebody{
+    background-color: #0F212E;
+}
+img{
+    width: 300px;
+    height: 250px;
+    object-fit: contain;
+}
+.stylegeneraljs{
+    padding: 5px;
+    display: flex;
+    height: 100%;
+    margin: auto;
+}
+.stylemapeo{
+    display: flex;
+    flex-wrap: wrap;
+    width: min-content;
+    height: 520px;
+    flex-direction: column;
+    text-align: center;
+background-color: #f8f8f8;
+border-radius: 4px;
+}
+.stylemapeo p{
+    margin: auto;
+}
+.stylemapeo button{
+    width: 80%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.stylemapeo button:hover{
+    background-color: orange;
+}
+.stylecostandcount{
+    display: flex;
+    justify-content: space-around;
+}
+.stylecardprod{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.stylecontainer{
+    align-items: center;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: wrap;
+    margin: auto;
+}
