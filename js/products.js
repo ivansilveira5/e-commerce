@@ -1,4 +1,3 @@
-// <<<<<<< pablo
 const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 const container = document.getElementById("cars-container");
 
@@ -14,8 +13,6 @@ function createProducts(dataArray) {
     </div>`
     }
 }
-
-// <<<<<<< Iván
 fetch(DATA_URL)
 .then(response => response.json())
 .then(data => {
@@ -25,4 +22,3 @@ fetch(DATA_URL)
 .catch(error => {
     console.error("Error en el fetch: ", error);
 })
-// =======
