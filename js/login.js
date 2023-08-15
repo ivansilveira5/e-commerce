@@ -1,6 +1,6 @@
 let submitButton = document.getElementById("buttonsubmit")
 //Función de Verificación de usuario
-function ConfrimLogin() {
+function ConfirmLogin() {
    localStorage.setItem('loggedin', 'true'); location.href='index.html'
    console.log(localStorage)
 }
@@ -25,7 +25,7 @@ function comprobarPwd () {
        return PasswordError()
    }
    else {        
-       return ConfrimLogin()
+       return ConfirmLogin()
    }
 }
 submitButton.addEventListener("click", comprobarPwd)
