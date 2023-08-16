@@ -3,15 +3,18 @@ const container = document.getElementById("cars-container");
 
 function createProducts(dataArray) {
   for (const item of dataArray) {
-    container.innerHTML += `<a href="product-info.html "style="text-decoration: none; color: #7887a1;"><div class="product-container">
+    container.innerHTML += `
+   
+    <div class="product-container">
         <img class="product-img img-thumbnail" src="${item.image}">
         <div class="product-text">
              <h1 class="product-title">${item.name} - ${item.currency} ${item.cost}</h1>
              <p class="product-description">${item.description}</p> 
         </div>
         <p class="product-count">${item.soldCount} vendidos</p>
-        
-    </div></a>`;
+         <button onclick="localStorage.setItem('productID', ${item.id}); location.href='product-info.html?id=${item.id}?${item.name}'">Ver Más</button>
+    </div>
+    `;
   }
 }
 fetch(DATA_URL)
