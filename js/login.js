@@ -1,6 +1,4 @@
 let submitButton = document.getElementById("buttonsubmit");
-
-
 function ConfirmLogin() {
    const email = document.getElementById("email").value;
    const password = document.getElementById("password").value;
@@ -29,7 +27,6 @@ function ConfirmLogin() {
       });
    }
 }
-
 //Función de Validación
 function comprobarPwd() {
    const mail = document.getElementById("email").value

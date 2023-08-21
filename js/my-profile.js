@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log(localStorage.getItem("users"));
     const firstNameInput = document.getElementById("firstName");

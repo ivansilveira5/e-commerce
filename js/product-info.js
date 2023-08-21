@@ -54,14 +54,16 @@ function showProducts(data) {
       event.preventDefault();
       const relatedProductId = link.getAttribute('data-product-id');
       const RELATED_PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${relatedProductId}.json`;
-
+      showSpinner();
       fetch(RELATED_PRODUCT_URL)
         .then((response) => response.json())
         .then((relatedData) => {
           showProducts(relatedData);
+          hideSpinner();
         })
         .catch((error) => {
           console.error("Error en el fetch: ", error);
+          hideSpinner();
         });
     });
   });
@@ -86,13 +88,14 @@ function showProducts(data) {
     showImage(currentImageIndex);
   });
 }
-
+showSpinner();
 fetch(PRODUCT_URL)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data.relatedProducts[0]);
     showProducts(data);
+    hideSpinner();
   })
   .catch((error) => {
     console.error("Error en el fetch: ", error);
+    hideSpinner();
   });

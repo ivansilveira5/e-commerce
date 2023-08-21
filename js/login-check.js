@@ -1,8 +1,8 @@
 function Verificacion(){
-    if (!localStorage.getItem('loggedin') || localStorage.getItem('loggedin') === 'false'){
-        alert("Ingresa para ver el contenido")
-        location.href='login.html'
+    if (localStorage.getItem('loggedin') === null){
+        alert("Logeate para poder ver este sector")
+            window.location = 'login.html';
+         
     }
-
 }
 Verificacion()
