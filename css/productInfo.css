@@ -1,0 +1,54 @@
+h1{
+    padding-top: 5%;
+}
+
+.images-container img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 2px;
+}
+.related-product{
+    padding-top: 2%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40%;
+}
+.related-product img{
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
+.stylecontainer{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.styleinformation{
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border: 1px solid rgb(211, 211, 211);
+}
+.styleinformation h1{
+   font-size: 3rem;
+   text-decoration: underline;
+}
+.stylegeneral{
+    padding-top: 10%;
+}
+.sub-title{
+    text-align: center;
+    font-size: xx-large;
+}
+.sub-title2{
+    text-align: end;
+}
+.buttons button{
+    border-radius: 5px;
+}
+.buttons button:hover{
+background-color: orange;
+
+}
