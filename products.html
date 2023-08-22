@@ -1,139 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  <script type="module" src="js/login-check.js"></script>
   <link href="css/productCard.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
-
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item"></li>
-          <li class="nav-item" id="navbarWelcome" style="color:white;">
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html" id="loginLink">Login</a>
-          </li>
-          <li id="logoutLink" style="display: none;" class="nav-item">
-            <a class="nav-link" href="index.html" id="logoutLink">Cerrar sesión</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <main class="pb-5">
-    <div class="product-title">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
       <div class="container">
-        <h1>Productos</h1>
-      </div>
-      <div id="category" class="container"></div>
-      <div class="container" id="filters">
-
-        <div class="row">
-          <div class="col text-end">
-            <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-              <!-- DESC -->
-              <input type="radio" class="btn-check" name="options" id="sortCostDesc">
-              <!--  -->
-              <label class="btn btn-light" for="sortCostDesc" title="Orden descendente por precio">
-                <span><i class="fas fa-sort-amount-down mr-1"></i>$</span>
-              </label>
-              <!-- ASC -->
-              <input type="radio" class="btn-check" name="options" id="sortCostAsc" checked>
-              <!--  -->
-              <label class="btn btn-light" for="sortCostAsc" title="Orden ascendente por precio">
-                <span><i class="fas fa-sort-amount-up mr-1"></i>$</span>
-              </label>
-              <!-- COUNT -->
-              <input type="radio" class="btn-check" name="options" id="sortCountSoldDesc">
-              <!--  -->
-              <label class="btn btn-light" for="sortCountSoldDesc" title="Orden descendente por relevancia">
-                <span><i class="fas fa-sort-amount-down mr-1"></i>Rel.</span>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-end">
-          <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
-            <div class="row container p-0 m-0">
-              <div class="col">
-                <p class="font-weight-normal text-end my-2">Search</p>
-              </div>
-              <div class="container">
-                <input class="form-control" />
-              </div>
-              <div class="col">
-                <p class="font-weight-normal text-end my-2">Precio</p>
-              </div>
-              <div class="col">
-                <input class="form-control" type="number" placeholder="min." id="FilterCostMin">
-              </div>
-              <div class="col">
-                <input class="form-control" type="number" placeholder="máx." id="FilterCostMax">
-              </div>
-              <div class="col-3 p-0">
-                <div class="btn-group" role="group">
-                  <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
-                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item"></li>
+          </ul>
         </div>
       </div>
+    </nav>
+  <main class="pb-5">
+    <!-- contenido de autos -->
+    <div id="cars-container"></div>
+    <!-- fin contenido de autos -->
+    </main>
+    <footer>
+      <div >
+        <p class="text-center">
+          Este sitio forma parte de
+          <a
+            href="https://jovenesaprogramar.edu.uy/"
+            target="_blank"
+            >Jovenes a Programar - 2023</a
+          >
+        </p>
+        <p class="text-center">
+          Desarrollado por el
+          <a class="" href="about.html"
+            >Grupo 5</a
+          >
+        </p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-
-    <!-- renderizado del Fetch -->
-    <div id="cat-list-container"></div>
-    <!--  -->
-  </main>
-  <footer>
-    <div>
-      <p class="text-center">
-        Este sitio forma parte de
-        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar - 2023</a>
-      </p>
-      <p class="text-center">
-        Desarrollado por el
-        <a class="" href="about.html">Grupo 5</a>
-      </p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/products.js"></script>
-  <script src="js/navbar.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/products.js"></script>
+  </body>
 </html>
