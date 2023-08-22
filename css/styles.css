@@ -10,8 +10,7 @@
 }
 
 nav a {
-  display: flex;
-  align-items: center;
+  text-decoration: none;
 }
 
 .bd-placeholder-img {
@@ -233,9 +232,4 @@ a.custom-card:hover {
 }
 .fontabout{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-#navbarWelcome {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
 }
