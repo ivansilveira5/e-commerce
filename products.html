@@ -32,14 +32,83 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item"></li>
+          <li class="nav-item" id="navbarWelcome" style="color:white;">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html" id="loginLink">Login</a>
+          </li>
+          <li id="logoutLink" style="display: none;" class="nav-item">
+            <a class="nav-link" href="index.html" id="logoutLink">Cerrar sesión</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <main class="pb-5">
-    <!-- contenido de autos -->
-    <div id="cars-container"></div>
-    <!-- fin contenido de autos -->
+    <div class="product-title">
+      <div class="container">
+        <h1>Productos</h1>
+      </div>
+      <div id="category" class="container"></div>
+      <div class="container" id="filters">
+
+        <div class="row">
+          <div class="col text-end">
+            <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+              <!-- DESC -->
+              <input type="radio" class="btn-check" name="options" id="sortCostDesc">
+              <!--  -->
+              <label class="btn btn-light" for="sortCostDesc" title="Orden descendente por precio">
+                <span><i class="fas fa-sort-amount-down mr-1"></i>$</span>
+              </label>
+              <!-- ASC -->
+              <input type="radio" class="btn-check" name="options" id="sortCostAsc" checked>
+              <!--  -->
+              <label class="btn btn-light" for="sortCostAsc" title="Orden ascendente por precio">
+                <span><i class="fas fa-sort-amount-up mr-1"></i>$</span>
+              </label>
+              <!-- COUNT -->
+              <input type="radio" class="btn-check" name="options" id="sortCountSoldDesc">
+              <!--  -->
+              <label class="btn btn-light" for="sortCountSoldDesc" title="Orden descendente por relevancia">
+                <span><i class="fas fa-sort-amount-down mr-1"></i>Rel.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-end">
+          <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+            <div class="row container p-0 m-0">
+              <div class="col">
+                <p class="font-weight-normal text-end my-2">Search</p>
+              </div>
+              <div class="container">
+                <input class="form-control" />
+              </div>
+              <div class="col">
+                <p class="font-weight-normal text-end my-2">Precio</p>
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="min." id="FilterCostMin">
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="máx." id="FilterCostMax">
+              </div>
+              <div class="col-3 p-0">
+                <div class="btn-group" role="group">
+                  <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
+                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- renderizado del Fetch -->
+    <div id="cat-list-container"></div>
+    <!--  -->
   </main>
   <footer>
     <div>
@@ -64,6 +133,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/navbar.js"></script>
 </body>
 
 </html>
