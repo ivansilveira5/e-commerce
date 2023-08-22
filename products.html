@@ -51,54 +51,51 @@
       </div>
       <div id="category" class="container"></div>
       <div class="container" id="filters">
+        <div class="row justify-content-end bg-dark btn-sm mt-4">
 
-        <div class="row">
-          <div class="col text-end">
-            <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-              <!-- DESC -->
-              <input type="radio" class="btn-check" name="options" id="sortCostDesc">
-              <!--  -->
-              <label class="btn btn-light" for="sortCostDesc" title="Orden descendente por precio">
-                <span><i class="fas fa-sort-amount-down mr-1"></i>$</span>
-              </label>
-              <!-- ASC -->
-              <input type="radio" class="btn-check" name="options" id="sortCostAsc" checked>
-              <!--  -->
-              <label class="btn btn-light" for="sortCostAsc" title="Orden ascendente por precio">
-                <span><i class="fas fa-sort-amount-up mr-1"></i>$</span>
-              </label>
-              <!-- COUNT -->
-              <input type="radio" class="btn-check" name="options" id="sortCountSoldDesc">
-              <!--  -->
-              <label class="btn btn-light" for="sortCountSoldDesc" title="Orden descendente por relevancia">
-                <span><i class="fas fa-sort-amount-down mr-1"></i>Rel.</span>
-              </label>
+          <div class="d-flex justify-content-between my-3 h-50">
+            <div class="d-flex container justify-content-end m-auto ">
+            <input class="form-control me-2" type="search" placeholder="Busca tu producto aquí..." aria-label="Search" id="searchInput">
+            </div>
+            <div class="row m-auto">
+              <div class="col text-end">
+                <div class="btn-group btn-group-toggle" data-bs-toggle="buttons">
+                  <!-- DESC -->
+                  <input type="radio" class="btn-check" name="options" id="sortCostDesc">
+                  <!--  -->
+                  <label class="btn btn-light px-4 m-auto" for="sortCostDesc" title="Orden descendente por precio">
+                    <span class="d-flex"><i class="fas fa-sort-amount-down mr-1"></i>$</span>
+                  </label>
+                  <!-- ASC -->
+                  <input type="radio" class="btn-check" name="options" id="sortCostAsc" checked>
+                  <!--  -->
+                  <label class="btn btn-light mx-1 px-4 m-auto" for="sortCostAsc" title="Orden ascendente por precio">
+                    <span class="d-flex"><i class="fas fa-sort-amount-up mr-1"></i>$</span>
+                  </label>
+                  <!-- COUNT -->
+                  <input type="radio" class="btn-check" name="options" id="sortCountSoldDesc">
+                  <!--  -->
+                  <label class="btn btn-light px-4 m-auto" for="sortCountSoldDesc" title="Orden descendente por relevancia">
+                    <span class="d-flex"><i class="fas fa-sort-amount-down mr-1"></i>Rel.</span>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-end">
-          <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
-            <div class="row container p-0 m-0">
-              <div class="col">
-                <p class="font-weight-normal text-end my-2">Search</p>
-              </div>
-              <div class="container">
-                <input class="form-control" />
-              </div>
-              <div class="col">
-                <p class="font-weight-normal text-end my-2">Precio</p>
-              </div>
-              <div class="col">
-                <input class="form-control" type="number" placeholder="min." id="FilterCostMin">
-              </div>
-              <div class="col">
-                <input class="form-control" type="number" placeholder="máx." id="FilterCostMax">
-              </div>
-              <div class="col-3 p-0">
-                <div class="btn-group" role="group">
-                  <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
-                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
-                </div>
+          <div class="row container col-10 my-2 m-auto">
+            <div class="col">
+              <p class="font-weight-normal text-end text-light fs-4 fw-bold">Precio:</p>
+            </div>
+            <div class="col justify-content-center">
+              <input class="form-control" type="number" placeholder="min." id="inputCostMin">
+            </div>
+            <div class="col justify-content-center">
+              <input class="form-control" type="number" placeholder="máx." id="inputCostMax">
+            </div>
+            <div class="col-2 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-info btn-block fw-bold text-light" id="filterCostButton">Filtrar</button>
+                <button class="btn btn-link btn-sm text-light" id="clearFilterButton">Limpiar</button>
               </div>
             </div>
           </div>
