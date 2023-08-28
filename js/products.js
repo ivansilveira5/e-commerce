@@ -1,4 +1,5 @@
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
+const catNumber = localStorage.getItem("catID")
+const DATA_URL = `https://japceibal.github.io/emercado-api/cats_products/${catNumber}.json`
 const container = document.getElementById("cars-container");
 
 function createProducts(dataArray) {
