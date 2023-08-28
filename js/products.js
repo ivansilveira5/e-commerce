@@ -1,8 +1,10 @@
 const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 const container = document.getElementById("cars-container");
+const searchInput = document.getElementById("searchInput");
 let filterData;
 
 function createProducts(dataArray) {
+    container.innerHTML = "";
     for (const item of dataArray) {
         container.innerHTML += `<div class="product-container">
         <img class="product-img img-thumbnail" src="${item.image}">
@@ -23,9 +25,13 @@ fetch(DATA_URL)
 .catch(error => {
     console.error("Error en el fetch: ", error);
 })
+function initialize(){
 
 searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredProducts = filterData.filter((product) => product?.name?.toLowerCase()?.includes(searchTerm));
-    updateProducts(filteredProducts, catName);
+    const filteredProducts = filterData.filter((product) => product?.name?.toLowerCase().includes(searchTerm));
+    createProducts(filteredProducts);
   });
+
+}
+initialize()
