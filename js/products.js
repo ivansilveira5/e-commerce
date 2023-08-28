@@ -1,5 +1,6 @@
 const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 const container = document.getElementById("cars-container");
+let filterData;
 
 function createProducts(dataArray) {
     for (const item of dataArray) {
@@ -16,9 +17,15 @@ function createProducts(dataArray) {
 fetch(DATA_URL)
 .then(response => response.json())
 .then(data => {
-    console.log(data);
+    filterData = data.products;
     createProducts(data.products);
 })
 .catch(error => {
     console.error("Error en el fetch: ", error);
 })
+
+searchInput.addEventListener("input", () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredProducts = filterData.filter((product) => product?.name?.toLowerCase()?.includes(searchTerm));
+    updateProducts(filteredProducts, catName);
+  });
