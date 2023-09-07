@@ -1,13 +1,13 @@
 const catNumber = localStorage.getItem("catID");
 const DATA_URL = `https://japceibal.github.io/emercado-api/cats_products/${catNumber}.json`;
-const container = document.getElementById("cars-container");
+const container = document.getElementById("product-container");
 const searchInput = document.getElementById("searchInput");
 let filterData;
 
 function createProducts(dataArray) {
   container.innerHTML = "";
   for (const item of dataArray) {
-    container.innerHTML += `<div class="product-container">
+    container.innerHTML += `<div onclick="redirect(${item.id})" class="product-container">
         <img class="product-img img-thumbnail" src="${item.image}">
         <div class="product-text">
              <h1 class="product-title">${item.name} - ${item.currency} ${item.cost}</h1>
@@ -16,6 +16,11 @@ function createProducts(dataArray) {
         <p class="product-count">${item.soldCount} vendidos</p>
     </div>`;
   }
+}
+
+function redirect(itemId){
+  localStorage.setItem("productID", itemId);
+  window.location.href="product-info.html"
 }
 
 fetch(DATA_URL)
