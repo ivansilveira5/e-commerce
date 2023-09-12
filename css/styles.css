@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: "Verdana", serif !important;
 }
 
 .jumbotron .display-4 {
@@ -32,8 +32,8 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background-color: #53c0fb;
+  background: url("../img/cover_back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -66,19 +66,19 @@ nav a {
 .jumbotron .lead {
   font-size: 38px;
 }
-
+ 
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .site-header a {
   color: white;
-  transition: ease-in-out color .15s;
+  transition: ease-in-out color 0.15s;
 }
 
 .site-header .dropdown-menu a {
@@ -86,7 +86,7 @@ footer p {
 }
 
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #0087f7;
   border-radius: 5px;
   background: white;
 }
@@ -187,4 +187,49 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+.shadowcard {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  cursor: pointer;
+  font-family: cursive;
+  background: linear-gradient(to bottom right, #6366f1, #a855f7 43%, #ec4899);
+}
+
+.shadowcard:hover:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  background-image: linear-gradient(
+    var(--rotate),
+    #6366f1,
+    #a855f7 43%,
+    #ec4899
+  );
+  position: absolute;
+  z-index: 1;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+.fontabout{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
