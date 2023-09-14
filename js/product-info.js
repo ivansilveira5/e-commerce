@@ -2,6 +2,7 @@ const id = localStorage.getItem("productID");
 const container = document.getElementById("product-container")
 const container_img = document.getElementById("img-container")
 const container_comments = document.getElementById("comments-container")
+const form = document.getElementById('newCommentForm');
 
 const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 const PRODUCT_COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
@@ -73,3 +74,59 @@ function createComments(array) {
     
   });   
   };
+
+    
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();// se crea un prevent default, para evitar que la pagina se recarge al tocar el submit.
+  
+    let userArray = JSON.parse(localStorage.getItem("users"))
+    let user = `${userArray[0].firstName}_${userArray[0].lastName}`
+    let comentario = document.getElementById("comment")
+    let stars = document.getElementById("stars")
+  
+    //fecha
+    let newDate = new Date()
+    const year = newDate.getFullYear();
+    const month = String(newDate.getMonth() + 1).padStart(2, '0');
+    const day = String(newDate.getDate()).padStart(2, '0');
+    const hours = String(newDate.getHours()).padStart(2, '0');
+    const minutes = String(newDate.getMinutes()).padStart(2, '0');
+    const seconds = String(newDate.getSeconds()).padStart(2, '0');
+    const dateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+
+    // crear obj
+    let datosComentario = {
+      product: id,
+      score: stars.value,
+      description: comentario.value,
+      user: user,
+      dateTime: dateTime,      
+      }
+
+    let datosComentarioArray = [datosComentario]
+  
+    console.log(datosComentario);
+    console.log(datosComentarioArray);
+
+    createComments(datosComentarioArray)
+  
+    try {
+      const res = await fetch(
+        'https://jsonplaceholder.typicode.com/users',
+        {
+          method: 'POST',
+          body: datosComentario,
+        },
+      );
+  
+      const resData = await res.json();
+  
+      console.log(resData);
+    } catch (err) {
+      console.log(err.message);
+    }
+
+
+  });
