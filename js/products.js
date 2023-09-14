@@ -35,8 +35,8 @@ fetch(DATA_URL)
 function initialize() {
   searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredProducts = filterData.filter((product) =>
-      product?.name?.toLowerCase().includes(searchTerm)
+    const filteredProducts = filterData.filter((product) => 
+    (product?.name?.toLowerCase().includes(searchTerm) || product?.description?.toLowerCase().includes(searchTerm))
     );
     createProducts(filteredProducts);
   });
