@@ -233,3 +233,29 @@ a.custom-card:hover {
 .fontabout{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.product-info-div {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-info-img {
+  height: 168px;
+  margin: 5px;
+}
+
+.product-comments-div {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.product-comments-user {
+  display: flex;
+}
