@@ -75,7 +75,6 @@ function createComments(array) {
   });   
   };
 
-    
 
   form.addEventListener('submit', async event => {
     event.preventDefault();// se crea un prevent default, para evitar que la pagina se recarge al tocar el submit.
@@ -109,8 +108,13 @@ function createComments(array) {
   
     console.log(datosComentario);
     console.log(datosComentarioArray);
+    
+    if(document.getElementById(user) == null)
+    {
+      createComments(datosComentarioArray)
+    } 
+    else {alert("Ya opinaste sobre este producto")}
 
-    createComments(datosComentarioArray)
   
     try {
       const res = await fetch(
