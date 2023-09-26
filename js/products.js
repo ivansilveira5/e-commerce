@@ -8,7 +8,7 @@ function createProducts(dataArray) {
   container.innerHTML = "";
   for (const item of dataArray) {
     container.innerHTML += `<div onclick="redirect(${item.id})" class="product-container">
-        <img class="product-img img-thumbnail" src="${item.image}">
+          <img class="product-img img-thumbnail" src="${item.image}">
         <div class="product-text">
              <h1 class="product-title">${item.name} - ${item.currency} ${item.cost}</h1>
              <p class="product-description">${item.description}</p> 
@@ -35,8 +35,8 @@ fetch(DATA_URL)
 function initialize() {
   searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredProducts = filterData.filter((product) =>
-      product?.name?.toLowerCase().includes(searchTerm)
+    const filteredProducts = filterData.filter((product) => 
+    (product?.name?.toLowerCase().includes(searchTerm) || product?.description?.toLowerCase().includes(searchTerm))
     );
     createProducts(filteredProducts);
   });
