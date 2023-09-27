@@ -278,3 +278,12 @@ a.custom-card:hover {
 .product-comments-user {
   display: flex;
 }
+
+#carousel-container{
+
+  height: 500px;
+  width: 40%;
+
+  position: relative;
+  left: 30%;
+}

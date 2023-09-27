@@ -3,6 +3,7 @@ const container = document.getElementById("product-container")
 const container_img = document.getElementById("img-container")
 const container_comments = document.getElementById("comments-container")
 const form = document.getElementById('newCommentForm');
+const container_carrousel = document.getElementById("carousel-img-container");
 
 const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 const PRODUCT_COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
@@ -19,22 +20,31 @@ async function fetchData() {
 console.log(fetchData());
 
 function createProducts(Obj) {
-    container.innerHTML +=     
-    `<div class="product-info-div">
-      <h1>${Obj.name}</h1>
-      <hr>
-      <h6>Descripción</h6>
-      <p>${Obj.description}</p>
-      <h6>Categoría</h6>
-      <p>${Obj.category}</p>
-      <h6>Cantidad de vendidos</h6>
-      <p>${Obj.soldCount}</p>
-      <h6>Imágenes ilustrativas</h6>
-    </div>`
-    Obj.images.map((image)=> {
-      container_img.innerHTML += 
-      `<img class="img-thumbnail product-info-img" src=${image}>`}
-    );    
+  container.innerHTML +=     
+  `<div class="product-info-div">
+    <h1>${Obj.name}</h1>
+    <hr>
+    <h6>Descripción</h6>
+    <p>${Obj.description}</p>
+    <h6>Categoría</h6>
+    <p>${Obj.category}</p>
+    <h6>Cantidad de vendidos</h6>
+    <p>${Obj.soldCount}</p>
+    <h6>Imágenes ilustrativas</h6>
+  </div>`
+
+  const carouselItems = Obj.images.map((image, index) => 
+  `<div class="carousel-item${index === 0 ? ' active' : ''} img-thumbnail">
+    <img src="${image}" class="d-block w-100">
+  </div>`
+  );
+
+container_carrousel.innerHTML = carouselItems.join('');
+
+Obj.images.map((image)=> {
+  container_img.innerHTML += 
+  `<img class="img-thumbnail product-info-img" src=${image}>`}
+);
 }
 
 function fetchComments() {
