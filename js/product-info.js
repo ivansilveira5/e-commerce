@@ -3,6 +3,7 @@ const container = document.getElementById("product-container")
 const container_img = document.getElementById("img-container")
 const container_comments = document.getElementById("comments-container")
 const form = document.getElementById('newCommentForm');
+const container_carrousel = document.getElementById("carousel-img-container");
 
 const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 const PRODUCT_COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
@@ -31,10 +32,19 @@ function createProducts(Obj) {
       <p>${Obj.soldCount}</p>
       <h6>Imágenes ilustrativas</h6>
     </div>`
-    Obj.images.map((image)=> {
-      container_img.innerHTML += 
-      `<img class="img-thumbnail product-info-img" src=${image}>`}
-    );    
+
+    const carouselItems = Obj.images.map((image, index) => 
+    `<div class="carousel-item${index === 0 ? ' active' : ''} img-thumbnail">
+      <img src="${image}" class="d-block w-100">
+    </div>`
+  );
+
+  container_carrousel.innerHTML = carouselItems.join('');
+
+  Obj.images.map((image)=> {
+    container_img.innerHTML += 
+    `<img class="img-thumbnail product-info-img" src=${image}>`}
+  );
 }
 
 function fetchComments() {
