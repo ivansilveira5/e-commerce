@@ -25,7 +25,7 @@ moonIcon.addEventListener('click', () => {
     if(mainImgDiv){
         mainImgDiv.classList.add('bg-dark');
         mainImgDiv.classList.remove('bg-light');
-        mainImgDiv.style.backgroundImage = "url('../img/cover_back_night.png')";
+        mainImgDiv.style.backgroundImage = 'url("../img/cover_back_night.png")';
     }
 
     if(categoriesCards){
@@ -48,7 +48,7 @@ sunIcon.addEventListener('click', () => {
     });
 
     if(mainImgDiv){
-        mainImgDiv.style.backgroundImage = "url('../img/cover_back.png')";
+        mainImgDiv.style.backgroundImage = 'url("../img/cover_back.png")';
         mainImgDiv.classList.toggle('bg-dark');
     }
 
@@ -74,8 +74,9 @@ if (darkModeStatus === true){
 
         
         if(mainImgDiv){
-        mainImgDiv.style.backgroundImage = "url('../img/cover_back_night.png')";
-        mainImgDiv.classList.toggle('bg-dark');
+        mainImgDiv.style.backgroundImage = 'url("../img/cover_back_night.png")';
+        mainImgDiv.classList.remove('bg-light');
+        mainImgDiv.classList.add('bg-dark');
         }
     
         moonIcon.classList.add('hidden');
@@ -87,8 +88,9 @@ if (darkModeStatus === true){
         });
 
         if(mainImgDiv){
-            mainImgDiv.style.backgroundImage = "url('../img/cover_back.png')";
-            mainImgDiv.classList.toggle('bg-dark');
+            mainImgDiv.style.backgroundImage = 'url("../img/cover_back.png")';
+            mainImgDiv.classList.remove('bg-dark');
+            mainImgDiv.classList.add('bg-light');
         }
 
         if(categoriesCards){
