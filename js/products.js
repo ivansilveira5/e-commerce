@@ -10,10 +10,10 @@ function createProducts(dataArray) {
     container.innerHTML += `<div onclick="redirect(${item.id})" class="product-container">
           <img class="product-img img-thumbnail" src="${item.image}">
         <div class="product-text">
-             <h1 class="product-title">${item.name} - ${item.currency} ${item.cost}</h1>
-             <p class="product-description">${item.description}</p> 
+             <h1 class="product-title text-muted">${item.name} - ${item.currency} ${item.cost}</h1>
+             <p class="product-description text-muted">${item.description}</p> 
         </div>
-        <p class="product-count">${item.soldCount} vendidos</p>
+        <p class="product-count text-muted">${item.soldCount} vendidos</p>
     </div>`;
   }
 }

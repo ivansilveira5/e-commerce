@@ -304,3 +304,24 @@ text-align: center;
   border-color: #565e64;
   border-radius: .25rem;
 }
+
+.hidden {
+  display: none;
+}
+
+.icon-tabler:hover {
+  transform: scale(1.1);
+  transition: ease 0.3s;
+  cursor: pointer;
+}
+
+.categoriesCards {
+  border: 1px solid rgb(211, 211, 211);
+  margin-bottom: 1rem;
+  padding: .5rem;
+  border-radius: 6px;
+}
+
+.categoriesCards:hover {
+  background-color: rgba(109, 151, 187, 0.1);
+}

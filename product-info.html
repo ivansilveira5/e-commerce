@@ -23,10 +23,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between" id="navBar">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Inicio</a>
+            <a class="nav-link" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
+            <a class="nav-link active" href="categories.html">Categorías</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
@@ -64,18 +64,18 @@
       </div>
     </div>
   </nav>
-  <main>
+  <main id="main-container">
     <div id="product-container"></div>
     <div class="product-info-div" id="img-container"></div>
-    <h2 class="product-info-div">Comentarios</h2>
+    <h2 class="product-info-div text-muted">Comentarios</h2>
     <hr class="product-info-div">
     <div id="comments-container"></div>
     <div id="newComment" class="product-info-div">
-      <h2>Comentar</h2>
+      <h2 class="text-muted">Comentar</h2>
       <hr>
       <form id="newCommentForm">
       <textarea id="comment" rows="4"></textarea>
-      <h6>Puntuación</h6>
+      <h6 class="text-muted">Puntuación</h6>
       <select id="stars" name="stars" >
         <option value="1">1</option>
         <option value="2">2</option>
@@ -88,7 +88,7 @@
       </form>
     </div>
   </main>
-  <footer class="text-muted">
+  <footer class="text-muted" id="footer">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -108,6 +108,7 @@
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
   <script src="js/usernameParse.js"></script>
+  <script src="js/dark-mode.js"></script>
 </body>
 
 </html>
