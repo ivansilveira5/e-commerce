@@ -20,31 +20,22 @@ async function fetchData() {
 console.log(fetchData());
 
 function createProducts(Obj) {
-  container.innerHTML +=     
-  `<div class="product-info-div">
-    <h1>${Obj.name}</h1>
-    <hr>
-    <h6>Descripción</h6>
-    <p>${Obj.description}</p>
-    <h6>Categoría</h6>
-    <p>${Obj.category}</p>
-    <h6>Cantidad de vendidos</h6>
-    <p>${Obj.soldCount}</p>
-    <h6>Imágenes ilustrativas</h6>
-  </div>`
-
-  const carouselItems = Obj.images.map((image, index) => 
-  `<div class="carousel-item${index === 0 ? ' active' : ''} img-thumbnail">
-    <img src="${image}" class="d-block w-100">
-  </div>`
-  );
-
-container_carrousel.innerHTML = carouselItems.join('');
-
-Obj.images.map((image)=> {
-  container_img.innerHTML += 
-  `<img class="img-thumbnail product-info-img" src=${image}>`}
-);
+    container.innerHTML +=     
+    `<div class="product-info-div">
+      <h1 class="text-muted">${Obj.name}</h1>
+      <hr>
+      <h6>Descripción</h6>
+      <p class="text-muted">${Obj.description}</p>
+      <h6 class="text-muted">Categoría</h6>
+      <p class="text-muted">${Obj.category}</p>
+      <h6 class="text-muted">Cantidad de vendidos</h6>
+      <p class="text-muted">${Obj.soldCount}</p>
+      <h6 class="text-muted">Imágenes ilustrativas</h6>
+    </div>`
+    Obj.images.map((image)=> {
+      container_img.innerHTML += 
+      `<img class="img-thumbnail product-info-img" src=${image}>`}
+    );    
 }
 
 function fetchComments() {
@@ -62,8 +53,8 @@ function createComments(array) {
     container_comments.innerHTML +=     
     `<div class="product-comments-div">
       <div class="product-comments-user">
-        <h6>${element.user} - ${element.dateTime} - </h6>
-        <div id="${element.user}">
+        <h6 class="text-muted">${element.user} - ${element.dateTime} - </h6>
+        <div class="text-muted" id="${element.user}">
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span> 
           <span class="fa fa-star"></span> 
@@ -71,7 +62,7 @@ function createComments(array) {
           <span class="fa fa-star"></span>
         </div>
       </div>
-      <p>${element.description}</p>
+      <p class="text-muted">${element.description}</p>
     </div>`
     const starContainer = document.getElementById(`${element.user}`);
     let estrellas = starContainer.querySelectorAll(".fa.fa-star");

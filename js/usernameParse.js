@@ -1,8 +1,5 @@
 const users = JSON.parse(localStorage.getItem('users'));
-const navbar = document.getElementById('navBar');
+const dropdownuser = document.getElementById('dropdownMenuButton1');
 
 const firstName = users[0].firstName;
-const li = document.createElement('li');
-li.innerHTML = `Hola ${firstName}!`;
-li.classList.add('nav-link')
-navbar.appendChild(li);
+dropdownuser.innerHTML = `Hola ${firstName}!`;
