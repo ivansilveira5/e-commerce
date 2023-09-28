@@ -16,6 +16,10 @@ let categoriesCards = document.getElementsByClassName('categoriesCards');
 // array con todos los objetos afectados
 let objectsToToggle = [mainContainer, footer]
 
+//url imagenes
+const imgDark = "img/cover_back_night.png"
+const imgLight = "img/cover_back.png"
+
 //cambio a modo oscuro
 moonIcon.addEventListener('click', () => {
     objectsToToggle.forEach(element => {
@@ -25,7 +29,8 @@ moonIcon.addEventListener('click', () => {
     if(mainImgDiv){
         mainImgDiv.classList.add('bg-dark');
         mainImgDiv.classList.remove('bg-light');
-        mainImgDiv.style.backgroundImage = `url("/img/cover_back_night.png")`;
+        mainImgDiv.style.backgroundImage = `url(${imgDark})`;
+        mainImgDiv.style.zIndex = 2;
     }
 
     if(categoriesCards){
@@ -48,7 +53,8 @@ sunIcon.addEventListener('click', () => {
     });
 
     if(mainImgDiv){
-        mainImgDiv.style.backgroundImage = `url("/img/cover_back.png")`;
+        mainImgDiv.style.backgroundImage = `url(${imgLight})`;
+        mainImgDiv.style.zIndex = 2;
         mainImgDiv.classList.toggle('bg-dark');
     }
 
@@ -74,7 +80,8 @@ if (darkModeStatus === true){
 
         
         if(mainImgDiv){
-        mainImgDiv.style.backgroundImage = `url("/img/cover_back_night.png")`;
+        mainImgDiv.style.backgroundImage = `url(${imgDark})`;
+        mainImgDiv.style.zIndex = 2;
         mainImgDiv.classList.remove('bg-light');
         mainImgDiv.classList.add('bg-dark');
         }
@@ -88,7 +95,8 @@ if (darkModeStatus === true){
         });
 
         if(mainImgDiv){
-            mainImgDiv.style.backgroundImage = `url("/img/cover_back.png")`;
+            mainImgDiv.style.backgroundImage = `url(${imgLight})`;
+            mainImgDiv.style.zIndex = 2;
             mainImgDiv.classList.remove('bg-dark');
             mainImgDiv.classList.add('bg-light');
         }
