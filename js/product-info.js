@@ -20,22 +20,31 @@ async function fetchData() {
 console.log(fetchData());
 
 function createProducts(Obj) {
-    container.innerHTML +=     
-    `<div class="product-info-div">
-      <h1 class="text-muted">${Obj.name}</h1>
-      <hr>
-      <h6>Descripción</h6>
-      <p class="text-muted">${Obj.description}</p>
-      <h6 class="text-muted">Categoría</h6>
-      <p class="text-muted">${Obj.category}</p>
-      <h6 class="text-muted">Cantidad de vendidos</h6>
-      <p class="text-muted">${Obj.soldCount}</p>
-      <h6 class="text-muted">Imágenes ilustrativas</h6>
-    </div>`
-    Obj.images.map((image)=> {
-      container_img.innerHTML += 
-      `<img class="img-thumbnail product-info-img" src=${image}>`}
-    );    
+  container.innerHTML +=     
+  `<div class="product-info-div">
+    <h1>${Obj.name}</h1>
+    <hr>
+    <h6>Descripción</h6>
+    <p>${Obj.description}</p>
+    <h6>Categoría</h6>
+    <p>${Obj.category}</p>
+    <h6>Cantidad de vendidos</h6>
+    <p>${Obj.soldCount}</p>
+    <h6>Imágenes ilustrativas</h6>
+  </div>`
+
+  const carouselItems = Obj.images.map((image, index) => 
+  `<div class="carousel-item${index === 0 ? ' active' : ''} img-thumbnail">
+    <img src="${image}" class="d-block w-100">
+  </div>`
+);
+
+container_carrousel.innerHTML = carouselItems.join('');
+
+Obj.images.map((image)=> {
+  container_img.innerHTML += 
+  `<img class="img-thumbnail product-info-img" src=${image}>`}
+);
 }
 
 function fetchComments() {
