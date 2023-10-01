@@ -335,3 +335,30 @@ text-align: center;
 .categoriesCards:hover {
   background-color: rgba(109, 151, 187, 0.1);
 }
+
+.related-product {
+  display:flex;
+  flex-direction: column;
+  width: 40%;
+  height: 60%;
+  border-radius: 12px;
+  border: 1px solid grey;
+  overflow: hidden;
+}
+
+.related-product p {
+  font-weight: bold;
+  text-align: center;
+}
+
+.related-products-img {
+  display:flex;
+  width: 100%;
+}
+
+#relatedProducts {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

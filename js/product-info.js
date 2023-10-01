@@ -14,6 +14,7 @@ async function fetchData() {
     .then((data) => {
       console.log(data);
       createProducts(data);
+      showRelatedProducts(data);
     })
     .catch("error");
 }
@@ -144,3 +145,19 @@ function createComments(array) {
 
 
   });
+
+  // Muestra productos relacionados
+
+  function showRelatedProducts(array){
+
+    let relatedProductsDiv = document.getElementById("relatedProducts")  
+    
+    array.relatedProducts.forEach(relatedProduct => {
+      relatedProductsDiv.innerHTML += `
+          <div class="related-product">
+              <img class="related-products-img" src="${relatedProduct.image}" alt="${relatedProduct.name}">
+              <p>${relatedProduct.name}</p>
+          </div>
+      `;
+    });
+  }
