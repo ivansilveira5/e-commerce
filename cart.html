@@ -64,9 +64,59 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="h1">
+        <h1>Carrito de compras</h1>
       </div>
+      <!-- Columnas para productos-->
+      <div class="container min-vw-100">
+  <div class="row">
+    <div class="col">
+    
+    </div>
+    <div class="col">
+      <strong>Nombre</strong>
+    </div>
+    <div class="col">
+      <strong>Costo</strong>
+    </div>
+    <div class="col">
+      <strong>Cantidad</strong>
+    </div><div class="col">
+      <strong>Subtotal</strong>
+    </div>
+    <hr>
+    <!-- Estructura de columnas para JS-->
+    <div id="user_cart">
+
+    </div>
+  </div>
+
+  <!--ACA THIAGO, BESOS-->
+
+  <div class="product-info-div">
+    <hr>
+    <h2 class="text-muted">Tipo de envío</h2>
+    <form>
+      <input type="radio" id="premium" name="tipo_envio">
+      <label for="premium" class="text-muted">Premium 2 a 5 días (15%)</label><br>
+      <input type="radio" id="express" name="tipo_envio">
+      <label for="express" class="text-muted">Express 5 a 8 días (7%)</label><br>
+      <input type="radio" id="standar" name="tipo_envio">
+      <label for="standar" class="text-muted">Standar 12 a 15 días (5%)</label>
+    </form><br>
+    <h2 class="text-muted">Dirección de envío</h2>
+    <form>
+      <label for="calle" class="text-muted">Calle</label><br>
+      <input type="text" id="calle" name="calle"><br>
+      <label for="numero" class="text-muted">Número</label><br>
+      <input type="number" id="numero" name="numero"><br>
+      <label for="esquina" class="text-muted">Esquina</label><br>
+      <input type="text" id="esquina" name="esquina">
+    </form>
+    <hr>
+  </div>
+
+</div>
     </div>
   </main>
   <footer class="text-muted">
@@ -90,5 +140,5 @@
   <script src="js/cart.js"></script>
   <script src="js/usernameParse.js"></script>
 </body>
-
+<script src="/js/user_cart.js"></script>
 </html>

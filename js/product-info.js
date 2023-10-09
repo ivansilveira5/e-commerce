@@ -23,7 +23,10 @@ console.log(fetchData());
 function createProducts(Obj) {
   container.innerHTML +=     
   `<div class="product-info-div">
-    <h1>${Obj.name}</h1>
+    <div class="product-info-cabecera">
+      <h1>${Obj.name}</h1>
+      <input type="submit" value="Comprar" id="add-carrito">
+    </div>
     <hr>
     <h6>Descripción</h6>
     <p>${Obj.description}</p>
