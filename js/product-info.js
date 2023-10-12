@@ -183,7 +183,7 @@ function createComments(array) {
   function addToCart() {
     alert("Se agregó el producto al carrito")
     const currentCart = JSON.parse(localStorage.getItem("local_Cart")) || [];
-
+    
     const newArticle = {
         "id": currentProduct.id,
         "name": currentProduct.name,

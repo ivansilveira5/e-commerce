@@ -2,7 +2,6 @@ CART_URL = "https://github.com/JaPCeibal/emercado-api/blob/main/user_cart/25801.
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));
-
   
   function mostrarCarrito(array) {
 
@@ -18,9 +17,10 @@ CART = JSON.parse(localStorage.getItem("local_Cart"));
 
             articles.forEach(element => {
                 // Convertir el costo a USD si la moneda no es USD
-                const costoEnUSD = (element.currency === "USD") ? element.unitCost : element.unitCost * uyUstoUSD;
+                const costoEnUSD = Math.round((element.currency === "USD") ?  element.unitCost : element.unitCost / uyUstoUSD );
+                   
+                // Calcular el subtotal 
 
-                // Calcular el subtotal
                 const subtotal = element.count * costoEnUSD;
 
                 user_cart.innerHTML +=
@@ -33,7 +33,7 @@ CART = JSON.parse(localStorage.getItem("local_Cart"));
                                 <p>${element.name}</p>
                             </div>
                             <div class="col">
-                               ${costoEnUSD} USD
+                            ${costoEnUSD} USD
                             </div>
                             <div class="col">
                                <input type="text" size="1" value="${element.count}">
