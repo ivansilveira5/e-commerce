@@ -1,20 +1,7 @@
 CART_URL = "https://github.com/JaPCeibal/emercado-api/blob/main/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
-
-CART = {
-    "user": 25801,
-    "articles": [
-        {
-            "id": 50924,
-            "name": "Peugeot 208",
-            "count": 1,
-            "unitCost": 15200,
-            "currency": "USD",
-            "image": "img/prod50924_1.jpg"
-        }
-    ]
-}
+CART = JSON.parse(localStorage.getItem("local_Cart"));
 
   
   function mostrarCarrito(array) {
@@ -27,7 +14,7 @@ CART = {
             const rates = data.rates;
             const uyUstoUSD = rates.UYU;
 
-            let articles = array.articles;
+            let articles = array;
 
             articles.forEach(element => {
                 // Convertir el costo a USD si la moneda no es USD

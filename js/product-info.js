@@ -4,28 +4,37 @@ const container_img = document.getElementById("img-container")
 const container_comments = document.getElementById("comments-container")
 const form = document.getElementById('newCommentForm');
 const container_carrousel = document.getElementById("carousel-img-container");
+const local_cart = localStorage.getItem("local_cart")
 
 const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 const PRODUCT_COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${id}.json`;
+const CART_URL = "https://github.com/JaPCeibal/emercado-api/blob/main/user_cart/25801.json";
+
+let currentProduct;
 
 async function fetchData() {
   await fetch(PRODUCT_URL)
     .then((response) => response.json())
-    .then((data) => {
+    .then((data) => {      
       console.log(data);
       createProducts(data);
       showRelatedProducts(data);
+      currentProduct = data;
     })
     .catch("error");
 }
 console.log(fetchData());
+
+
+
+
 
 function createProducts(Obj) {
   container.innerHTML +=     
   `<div class="product-info-div">
     <div class="product-info-cabecera">
       <h1>${Obj.name}</h1>
-      <input type="submit" value="Comprar" id="add-carrito">
+      <input type="submit" value="Comprar" id="add-carrito" onclick="addToCart()">
     </div>
     <hr>
     <h6>Descripción</h6>
@@ -157,10 +166,34 @@ function createComments(array) {
     
     array.relatedProducts.forEach(relatedProduct => {
       relatedProductsDiv.innerHTML += `
-          <div class="related-product">
+          <div onclick="redirect(${relatedProduct.id})" class="related-product cursor-active">
               <img class="related-products-img" src="${relatedProduct.image}" alt="${relatedProduct.name}">
               <p>${relatedProduct.name}</p>
-          </div>
-      `;
+          </div>`;
     });
   }
+
+  function redirect(itemId){
+    localStorage.setItem("productID", itemId);
+    window.location.href="product-info.html"
+  }
+
+  //Agregar al carrito
+
+  function addToCart() {
+    alert("Se agregó el producto al carrito")
+    const currentCart = JSON.parse(localStorage.getItem("local_Cart")) || [];
+
+    const newArticle = {
+        "id": currentProduct.id,
+        "name": currentProduct.name,
+        "count": currentProduct.count,
+        "unitCost": currentProduct.cost,
+        "currency": currentProduct.currency,
+        "image": currentProduct.images[0]
+    };
+
+    currentCart.push(newArticle);
+
+    localStorage.setItem("local_Cart", JSON.stringify(currentCart));
+}
