@@ -187,7 +187,7 @@ function createComments(array) {
     const newArticle = {
         "id": currentProduct.id,
         "name": currentProduct.name,
-        "count": currentProduct.count,
+        "count": 1,
         "unitCost": currentProduct.cost,
         "currency": currentProduct.currency,
         "image": currentProduct.images[0]
