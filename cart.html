@@ -62,34 +62,18 @@
       </div>
     </div>
   </nav>
-  <main> 
-    <div class="container"> 
+  <main id="main-container"> 
+    
     <div class="product-info-div">
         <div class="h1">
-          <h1>Carrito de compras</h1>
+          <h1 class="text-muted pt-4">Carrito de compras</h1>
         </div>
-        <!-- Columnas para productos-->
-        <div class="container">
-        <div class="row">
-            <div class="col">
-              <strong>Nombre</strong>
-            </div>
-            <div class="col">
-              <strong>Costo</strong>
-            </div>
-            <div class="col">
-              <strong>Cantidad</strong>
-            </div>
-            <div class="col">
-              <strong>Subtotal</strong>
-            </div>
           <hr>
           <!-- Estructura de columnas para JS-->
           <div id="user_cart">
 
           </div>
-        </div>
-      </div>
+        </div> 
     </div>
 
   <div class="product-info-div">
@@ -106,19 +90,18 @@
     <h2 class="text-muted">Dirección de envío</h2>
     <form>
       <label for="calle" class="text-muted">Calle</label><br>
-      <input type="text" id="calle" name="calle"><br>
+      <input class="form-control w-50" type="text" id="calle" name="calle"><br>
       <label for="numero" class="text-muted">Número</label><br>
-      <input type="number" id="numero" name="numero"><br>
+      <input class="form-control w-50" type="number" id="numero" name="numero"><br>
       <label for="esquina" class="text-muted">Esquina</label><br>
-      <input type="text" id="esquina" name="esquina">
+      <input class="form-control w-50" type="text" id="esquina" name="esquina">
     </form>
-    <hr>
   </div>
-
 </div>
-    </div>
+</div>
   </main>
-  <footer class="text-muted">
+  <footer class="text-muted" id="footer">
+    <hr>
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -138,6 +121,7 @@
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/usernameParse.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/dark-mode.js"></script>
 </body>
-<script src="/js/cart.js"></script>
 </html>

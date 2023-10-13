@@ -25,21 +25,22 @@ CART = JSON.parse(localStorage.getItem("local_Cart"));
 
                 user_cart.innerHTML +=
                     `<div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <img class="img-thumbnail mw-50" src="${element.image}">
+                        <div class="row categoriesCards d-flex">
+                            <div class="col-12 col-md-4">
+                                <img class="img-thumbnail" src="${element.image}">
                             </div>
                             <div class="col">
-                                <p>${element.name}</p>
+                            <div class="col-12 col-sm-8 d-flex flex-wrap justify-content-around align-items-center">
+                                <p class="text-muted">${element.name} -</p>
+                                <p class="text-muted">${costoEnUSD} USD</p>
                             </div>
-                            <div class="col">
-                            ${costoEnUSD} USD
+                            <div class="d-flex align-items-center">
+                            <div class="col-6 col-sm-5">
+                            <label for="countValue" class="text-muted">Cant.</label>
+                            <input name="countValue" id="countValue" class="form-control h-50 w-75" type="number" min="0" value="${element.count}">
                             </div>
-                            <div class="col">
-                               <input type="text" size="1" value="${element.count}">
+                            <p class="col-6 text-muted" id="subtotal">Subtotal: ${subtotal} USD</p>
                             </div>
-                            <div class="col" id="subtotal">
-                                ${subtotal} USD
                             </div>
                         </div>
                     </div>`;

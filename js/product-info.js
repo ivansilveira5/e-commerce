@@ -31,24 +31,24 @@ console.log(fetchData());
 
 function createProducts(Obj) {
   container.innerHTML +=     
-  `<div class="product-info-div">
+  `<div class="product-info-div pt-3">
     <div class="product-info-cabecera">
-      <h1>${Obj.name}</h1>
-      <input type="submit" value="Comprar" id="add-carrito" onclick="addToCart()">
+      <h2 class="text-muted">${Obj.name}</h2>
+      <input class="btnBlack" type="submit" value="Comprar" id="add-carrito" onclick="addToCart()">
     </div>
     <hr>
-    <h6>Descripción</h6>
-    <p>${Obj.description}</p>
-    <h6>Categoría</h6>
-    <p>${Obj.category}</p>
-    <h6>Cantidad de vendidos</h6>
-    <p>${Obj.soldCount}</p>
-    <h6>Imágenes ilustrativas</h6>
+    <strong class="text-muted">Descripción</strong>
+    <p class="text-muted">${Obj.description}</p>
+    <strong class="text-muted">Categoría</strong>
+    <p class="text-muted">${Obj.category}</p>
+    <strong class="text-muted">Cantidad de vendidos</strong>
+    <p class="text-muted">${Obj.soldCount}</p>
+    <strong class="text-muted">Imágenes ilustrativas</strong>
   </div>`
 
   const carouselItems = Obj.images.map((image, index) => 
-  `<div class="carousel-item${index === 0 ? ' active' : ''} img-thumbnail">
-    <img src="${image}" class="d-block w-100">
+  `<div class="carousel-item${index === 0 ? ' active' : ''} img-thumbnail" style="object-fit : cover; background-position : center;">
+    <img src="${image}">
   </div>`
 );
 
@@ -74,7 +74,7 @@ function createComments(array) {
   array.forEach(element => {
     container_comments.innerHTML +=     
     `<div class="product-comments-div">
-      <div class="product-comments-user">
+      <div class="product-comments-user flex-wrap">
         <h6 class="text-muted">${element.user} - ${element.dateTime} - </h6>
         <div class="text-muted" id="${element.user}">
           <span class="fa fa-star"></span>
@@ -168,7 +168,7 @@ function createComments(array) {
       relatedProductsDiv.innerHTML += `
           <div onclick="redirect(${relatedProduct.id})" class="related-product cursor-active">
               <img class="related-products-img" src="${relatedProduct.image}" alt="${relatedProduct.name}">
-              <p>${relatedProduct.name}</p>
+              <p class="text-muted">${relatedProduct.name}</p>
           </div>`;
     });
   }
