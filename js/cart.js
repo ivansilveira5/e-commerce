@@ -1,8 +1,19 @@
-CART_URL = "https://github.com/JaPCeibal/emercado-api/blob/main/user_cart/25801.json";
+CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));
   
+async function fetchData() {
+    await fetch(CART_URL)
+      .then((response) => response.json())
+      .then((data) => {      
+        console.log(data);
+        mostrarCarrito(data.articles);
+      })
+      .catch("error");
+  }
+  console.log(fetchData());
+
   function mostrarCarrito(array) {
 
 
