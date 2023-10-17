@@ -62,6 +62,7 @@
       </div>
     </div>
   </nav>
+  
   <main id="main-container"> 
     
     <div class="product-info-div">
@@ -98,8 +99,65 @@
       <label for="submit" class="text-muted"></label><br>
       <input class="submit control w-50" type="submit" id="esquina" name="Enviar" value="Enviar">
     </form>
-  </div>
+    <!--Costos subtotal y envio-->
+    <hr>
+    <div class="row">
+      <h2 class="text-muted">Costos</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row d-flex justify-content-between">
+            <h4 class="text-muted col-10">Subtotal</h4>
+            <p class="text-muted col-2">Precio</p>
+          </div>
+          <p class="text-muted">Costo unitario del producto por cantidad</p>
+        </li>
+        <li class="list-group-item">
+          <div class="row d-flex justify-content-between">
+            <h4 class="text-muted col-10">Costo de envío</h2>
+            <p class="text-muted col-2">Precio</p>
+          </div>
+          <p class="text-muted">Según el tipo de envío</p>
+        </li>
+        <li class="list-group-item">
+          <div class="row d-flex justify-content-between">
+            <h4 class="text-muted col-10">Total($)</h4>
+            <p class="text-muted col-2">Precio</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <hr>
+   <!--Forma de pago-->
+    <!-- trigger modal -->
+    <button type="button" class="btn btn-primary control w-50" data-bs-toggle="modal" data-bs-target="#paymentMethod">
+      Seleccionar forma de pago
+    </button>
+    <!--div que muestra forma de pago seleccionado-->
+    <div id="payment"></div>
+    <!-- Modal -->
+    <div class="modal fade" id="paymentMethod" tabindex="-1" aria-labelledby="paymentMethodLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Seleccione forma de pago</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <button type="radial"></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div>     
 </div>
+
+
+
 </div>
   </main>
   <footer class="text-muted" id="footer">
