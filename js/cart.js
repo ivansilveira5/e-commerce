@@ -2,6 +2,7 @@ CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));
+const buyForm = document.getElementById("buy_form");
   
 async function fetchData() {
     await fetch(CART_URL)
@@ -70,3 +71,57 @@ async function fetchData() {
     .catch(error => console.error("Error al obtener tasas de cambio:", error));
   }
 mostrarCarrito(CART);
+
+buyForm.addEventListener("submit", function(event){
+    event.preventDefault();
+});
+
+// Obtén una referencia al input tipo radio y al campo de texto
+var creditcard = document.getElementById("creditcard");
+var banktransfer = document.getElementById("banktransfer");
+var accountNumberField = document.getElementById("accountnumber");
+var securitycode = document.getElementById("securitycode");
+var expirationdate = document.getElementById("expirationdate");
+
+creditcard.addEventListener("change", function () {
+    if (creditcard.checked) {
+        accountNumberField.disabled = true;
+        accountNumberField.style.backgroundColor = "#ccc";
+        securitycode.disabled = false;
+        securitycode.style.backgroundColor = "";
+        expirationdate.disabled = false;
+        expirationdate.style.backgroundColor = "";
+    }
+});
+
+banktransfer.addEventListener("change", function () {
+    if (banktransfer.checked) {
+        accountNumberField.disabled = false;
+        accountNumberField.style.backgroundColor = "";
+        securitycode.disabled = true;
+        securitycode.style.backgroundColor = "#ccc";
+        expirationdate.disabled = true;
+        expirationdate.style.backgroundColor = "#ccc";
+    }
+});
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()

@@ -80,6 +80,7 @@
   <div class="product-info-div">
     <hr>
     <h2 class="text-muted">Tipo de envío</h2>
+
     <form>
       <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked>
       <label for="premium" class="text-muted ">Premium 2 a 5 días (15%)</label><br>
@@ -89,23 +90,33 @@
       <label for="standar" class="text-muted">Standar 12 a 15 días (5%)</label>
     </form><br>
     <h2 class="text-muted">Dirección de envío</h2>
-    <form>
+
+    <form id="buy_form" class="row g-3 needs-validation" novalidate>
       <div class="row d-flex flex-wrap">
         <div class="col-12 col-sm-6">
           <label for="calle" class="text-muted">Calle</label>
           <input class="form-control " type="text" id="calle" name="calle" required>
+          <div class="invalid-feedback">
+            Ingresa una calle.
+          </div>
         </div>
         <div class="col-12 col-sm-6">
           <label for="numero" class="text-muted">Número</label>
           <input class="form-control col-12 col-sm-6" type="tel" id="numero" name="numero" required>
+          <div class="invalid-feedback">
+            Ingresa un número.
+          </div>
         </div>
         <div class="col-12 col-sm-6">
           <label for="esquina" class="text-muted">Esquina</label>
           <input class="form-control col-12 col-sm-6" type="text" id="esquina" name="esquina" required>
+          <div class="invalid-feedback">
+            Ingresa una esquina.
+          </div>
         </div>
       </div>
-    </form>
-    <!--Costos subtotal y envio-->
+
+      <!--Costos subtotal y envio-->
     <hr>
     <div class="row">
       <h2 class="text-muted">Costos</h2>
@@ -133,11 +144,19 @@
       </ul>
     </div>
     <hr>
+
    <!--Forma de pago-->
     <!-- trigger modal -->
-    <button type="button" class="btn btn-primary control w-50" data-bs-toggle="modal" data-bs-target="#paymentMethod">
-      Seleccionar forma de pago
+    <div>
+      <h2 class="text-muted">Forma de Pago</h2>
+      <p>No seleccionado. <a href="" data-bs-toggle="modal" data-bs-target="#paymentMethod">Seleccionar forma de pago</a></p>
+    </div>
+
+    <hr>
+    <button type="submit" class="btn btn-primary control w-50" id="buy_button">
+      Finalizar Compra
     </button>
+
     <!--div que muestra forma de pago seleccionado-->
     <div id="payment"></div>
   <div>     
@@ -157,7 +176,7 @@
               <input type="radio" class="form-check-input" id="creditcard" name="payment" checked>
               <label class="form-check-label" for="creditcard">Tarjeta de crédito</label>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="form-1">
               <fieldset>
                 <label for="securitycode">Código de seg.:</label><br>
                 <input type="text" class="form-control" id="securitycode"><br>
@@ -170,7 +189,7 @@
               <input type="radio" class="form-check-input" id="banktransfer" name="payment">
               <label class="form-check-label" for="banktransfer">Transferencia bancaria</label>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="form-2">
               <fieldset>
                 <label for="accountnumber">Número de cuenta:</label><br>
                 <input type="text" class="form-control" id="accountnumber">
@@ -183,6 +202,8 @@
     </div>
   </div>
 </div>
+
+  </form>
 
   </main>
   <footer class="text-muted" id="footer">
@@ -209,4 +230,4 @@
   <script src="js/cart.js"></script>
   <script src="js/dark-mode.js"></script>
 </body>
-</html>
+</html>	
