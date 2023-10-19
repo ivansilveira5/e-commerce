@@ -77,11 +77,16 @@ buyForm.addEventListener("submit", function(event){
 });
 
 // Obtén una referencia al input tipo radio y al campo de texto
-var creditcard = document.getElementById("creditcard");
-var banktransfer = document.getElementById("banktransfer");
-var accountNumberField = document.getElementById("accountnumber");
-var securitycode = document.getElementById("securitycode");
-var expirationdate = document.getElementById("expirationdate");
+const creditcard = document.getElementById("creditcard");
+const banktransfer = document.getElementById("banktransfer");
+const accountNumberField = document.getElementById("accountnumber");
+const securitycode = document.getElementById("securitycode");
+const expirationdate = document.getElementById("expirationdate");
+
+const paymentStatusParagraph = document.getElementById("paymentStatus");
+const buyButton = document.getElementById("buy_button");
+
+
 
 creditcard.addEventListener("change", function () {
     if (creditcard.checked) {
@@ -91,6 +96,8 @@ creditcard.addEventListener("change", function () {
         securitycode.style.backgroundColor = "";
         expirationdate.disabled = false;
         expirationdate.style.backgroundColor = "";
+        paymentStatusParagraph.textContent = "Tarjeta de crédito.";
+        paymentStatusParagraph.classList.add('text-muted')
     }
 });
 
@@ -102,15 +109,40 @@ banktransfer.addEventListener("change", function () {
         securitycode.style.backgroundColor = "#ccc";
         expirationdate.disabled = true;
         expirationdate.style.backgroundColor = "#ccc";
+        paymentStatusParagraph.textContent = "Transferencia bancaria.";
+        paymentStatusParagraph.classList.add('text-muted')
     }
 });
 
+buyButton.addEventListener("click", function(){
+    if (!creditcard.checked && !banktransfer.checked)
+    {
+        paymentStatusParagraph.textContent = "Debe seleccionar una forma de pago.";
+        paymentStatusParagraph.style.color = "#ff0000";
+    }
+})
+
+const btnContinuar = document.getElementById('btnContinuarModal');
+(function validarModal(){
+    const creditCard = document.getElementById('creditcard');
+    const securityCode = document.getElementById('securitycode');
+    const expirationDate = document.getElementById('expirationdate');
+    const accountNumber = document.getElementById('accountnumber');
+    let objsToIterate = [creditCard, securityCode, expirationDate, accountNumber];
+    
+    if(creditCard.value == '' || securityCo.value == '' || expirationDate.value == '' || accountNumber.value == ''){
+        objsToIterate.forEach(element => {
+            element.setCustomValidity('Debes seleccionar un campo')
+        });
+    }
+})
+btnContinuar.addEventListener('click', validarModal)
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict'
   
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+    let forms = document.querySelectorAll('.needs-validation')
   
     // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
