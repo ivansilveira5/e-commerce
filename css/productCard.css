@@ -3,7 +3,6 @@
 }
 
 .product-container {
-    width: 90vw;
     height: 250px;
     display: flex;
     justify-content: space-around;
@@ -60,5 +59,11 @@
     }
     .product-description {
         font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .product-img {
+        width: 45%;
     }
 }

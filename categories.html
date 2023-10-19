@@ -30,16 +30,43 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"><div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Carrito </a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Perfil</a></li>
+              <li><a class="dropdown-item" href="login.html" onclick=" localStorage.setItem('loggedin', 'false')">Cerrar Session</a></li>
+              <li id="lightMode-icons-div">
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                </svg>
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+                  <path d="M6.343 17.657l-1.414 1.414" />
+                  <path d="M6.343 6.343l-1.414 -1.414" />
+                  <path d="M17.657 6.343l1.414 -1.414" />
+                  <path d="M17.657 17.657l1.414 1.414" />
+                  <path d="M4 12h-2" />
+                  <path d="M12 4v-2" />
+                  <path d="M20 12h2" />
+                  <path d="M12 20v2" />
+                </svg>
+             </li>
+            </ul>
+          </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <main class="pb-5">
+  <main class="pb-5" id="main-container">
     <div class="text-center p-4">
-      <h2>Categorías</h2>
-      <p class="lead">Verás aquí todas las categorías del sitio.</p>
+      <h2 class="text-muted">Categorías</h2>
+      <p class="lead text-muted">Verás aquí todas las categorías del sitio.</p>
     </div>
     <div class="container">
       <div class="row">
@@ -58,7 +85,7 @@
         <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
           <div class="row container p-0 m-0">
             <div class="col">
-              <p class="font-weight-normal text-end my-2">Cant.</p>
+              <p class="font-weight-normal text-end my-2 text-muted">Cant.</p>
             </div>
             <div class="col">
               <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
@@ -66,22 +93,22 @@
             <div class="col">
               <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
             </div>
-            <div class="col-3 p-0">
+            <div class="col p-0">
               <div class="btn-group" role="group">
                 <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                <button class="btn btn-link btn-sm " id="clearRangeFilter">Limpiar</button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="list-group" id="cat-list-container">
+        <div class="list-group d-flex flex-row flex-wrap flex-sm-column justify-content-center" id="cat-list-container">
         </div>
       </div>
     </div>
   </main>
-  <footer class="text-muted">
+  <footer class="text-muted" id="footer">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -101,6 +128,7 @@
   <script src="js/init.js"></script>
   <script src="js/categories.js"></script>
   <script src="js/usernameParse.js"></script>
+  <script src="js/dark-mode.js"></script>
 </body>
 
 </html>

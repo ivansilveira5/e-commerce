@@ -19,9 +19,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between" id="navBar">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -29,20 +29,164 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"><div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Carrito </a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Perfil</a></li>
+              <li><a class="dropdown-item" href="login.html" onclick=" localStorage.setItem('loggedin', 'false')">Cerrar Session</a></li>
+              <li id="lightMode-icons-div">
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                </svg>
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+                  <path d="M6.343 17.657l-1.414 1.414" />
+                  <path d="M6.343 6.343l-1.414 -1.414" />
+                  <path d="M17.657 6.343l1.414 -1.414" />
+                  <path d="M17.657 17.657l1.414 1.414" />
+                  <path d="M4 12h-2" />
+                  <path d="M12 4v-2" />
+                  <path d="M20 12h2" />
+                  <path d="M12 20v2" />
+                </svg>
+             </li>
+            </ul>
+          </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  
+  <main id="main-container"> 
+    
+    <div class="product-info-div">
+        <div class="h1">
+          <h1 class="text-muted pt-4">Carrito de compras</h1>
+        </div>
+          <hr>
+          <!-- Estructura de columnas para JS-->
+          <div id="user_cart">
+
+          </div>
+        </div> 
+    </div>
+
+  <div class="product-info-div">
+    <hr>
+    <h2 class="text-muted">Tipo de envío</h2>
+    <form>
+      <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked>
+      <label for="premium" class="text-muted ">Premium 2 a 5 días (15%)</label><br>
+      <input class="form-check-input" type="radio" id="express" name="tipo_envio">
+      <label for="express" class="text-muted">Express 5 a 8 días (7%)</label><br>
+      <input class="form-check-input" type="radio" id="standar" name="tipo_envio">
+      <label for="standar" class="text-muted">Standar 12 a 15 días (5%)</label>
+    </form><br>
+    <h2 class="text-muted">Dirección de envío</h2>
+    <form>
+      <div class="row d-flex flex-wrap">
+        <div class="col-12 col-sm-6">
+          <label for="calle" class="text-muted">Calle</label>
+          <input class="form-control " type="text" id="calle" name="calle" required>
+        </div>
+        <div class="col-12 col-sm-6">
+          <label for="numero" class="text-muted">Número</label>
+          <input class="form-control col-12 col-sm-6" type="tel" id="numero" name="numero" required>
+        </div>
+        <div class="col-12 col-sm-6">
+          <label for="esquina" class="text-muted">Esquina</label>
+          <input class="form-control col-12 col-sm-6" type="text" id="esquina" name="esquina" required>
+        </div>
+      </div>
+    </form>
+    <!--Costos subtotal y envio-->
+    <hr>
+    <div class="row">
+      <h2 class="text-muted">Costos</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row d-flex justify-content-between">
+            <h4 class="text-muted col-10">Subtotal</h4>
+            <p class="text-muted col-2">Precio</p>
+          </div>
+          <p class="text-muted">Costo unitario del producto por cantidad</p>
+        </li>
+        <li class="list-group-item">
+          <div class="row d-flex justify-content-between">
+            <h4 class="text-muted col-10">Costo de envío</h2>
+            <p class="text-muted col-2">Precio</p>
+          </div>
+          <p class="text-muted">Según el tipo de envío</p>
+        </li>
+        <li class="list-group-item">
+          <div class="row d-flex justify-content-between">
+            <h4 class="text-muted col-10">Total($)</h4>
+            <p class="text-muted col-2">Precio</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <hr>
+   <!--Forma de pago-->
+    <!-- trigger modal -->
+    <button type="button" class="btn btn-primary control w-50" data-bs-toggle="modal" data-bs-target="#paymentMethod">
+      Seleccionar forma de pago
+    </button>
+    <!--div que muestra forma de pago seleccionado-->
+    <div id="payment"></div>
+  <div>     
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="paymentMethod" tabindex="-1" aria-labelledby="paymentMethodLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="exampleModalLabel">Seleccione forma de pago</h2>
+      </div>
+      <div class="modal-body">              
+          <form>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="creditcard" name="payment" checked>
+              <label class="form-check-label" for="creditcard">Tarjeta de crédito</label>
+            </div>
+            <div class="form-group">
+              <fieldset>
+                <label for="securitycode">Código de seg.:</label><br>
+                <input type="text" class="form-control" id="securitycode"><br>
+                <label for="expirationdate">Vencimiento (MM/AA):</label><br>
+                <input type="text" class="form-control" id="expirationdate">
+              </fieldset>
+              <hr>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="banktransfer" name="payment">
+              <label class="form-check-label" for="banktransfer">Transferencia bancaria</label>
+            </div>
+            <div class="form-group">
+              <fieldset>
+                <label for="accountnumber">Número de cuenta:</label><br>
+                <input type="text" class="form-control" id="accountnumber">
+              </fieldset>
+            </div>
+          </form> 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Continuar</button>
       </div>
     </div>
+  </div>
+</div>
+
   </main>
-  <footer class="text-muted">
+  <footer class="text-muted" id="footer">
+    <hr>
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -61,6 +205,8 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="js/usernameParse.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/dark-mode.js"></script>
 </body>
-
 </html>
