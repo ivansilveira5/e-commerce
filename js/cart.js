@@ -2,7 +2,30 @@ CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));
-  
+let subtotalFinal = 0;
+const subtotalHTML = document.getElementById('subtotalHTML');
+const shipPriceHTML = document.getElementById('shipPriceHTML');
+const totalHTML = document.getElementById('totalHTML');
+const premiumCheck = document.getElementById('premium');
+const expressCheck = document.getElementById('express');
+const standarCheck = document.getElementById('standar');
+let domLoadSubtotal = 0;
+let domLoadShipPrice = 0;
+let domLoadTotal = 0;
+ 
+
+function calcPercentage(num){
+    let result = 0;
+    if(premiumCheck.checked) {
+        result = num * premiumCheck.value
+    } else if (expressCheck.checked) {
+        result = num * expressCheck.value 
+    } else if (standarCheck.checked) {
+        result = num * standarCheck.value
+    }
+    return result
+}
+
 async function fetchData() {
     await fetch(CART_URL)
       .then((response) => response.json())
@@ -22,7 +45,6 @@ async function fetchData() {
     .then(data => {
         const rates = data.rates;
         const uyUstoUSD = rates.UYU;
-
         let articles = array;
 
 
@@ -32,14 +54,44 @@ async function fetchData() {
             const costoEnUSD = Math.round((element.currency === "USD") ?  element.unitCost : element.unitCost / uyUstoUSD);
 
             // Función para calcular y actualizar el subtotal
+            let previousCount = 0; // Inicializa el valor anterior en 0
+            let percentage = 0;
+            let total = 0;
+
             addEventListener("input", (UpdateValue) => {
                 const countInput = document.getElementById(`countValue${element.id}`);
                 const subtotalElement = document.getElementById(`subtotal${element.id}`);
-                const count = parseInt(countInput.value);
-                const subtotal = count * costoEnUSD;
+                let count = parseInt(countInput.value);
+                let subtotal = count * costoEnUSD;
+
+                if (count > previousCount) {
+                    subtotalFinal += count * costoEnUSD;                    
+                } else if (count < previousCount) {
+                    subtotalFinal -= subtotal;                    
+                }
+
+                if(count == 0) {
+                    subtotalFinal = 0;
+                }
+
+                percentage = calcPercentage(subtotalFinal);
+                total = subtotalFinal + percentage;
+                previousCount = count; // Actualiza el valor anterior
+                console.log(subtotal);
                 subtotalElement.textContent = `Subtotal: ${subtotal} USD`;
-                
-            })
+                console.log(subtotalFinal);
+                subtotalHTML.textContent = `${subtotalFinal} USD`;
+                shipPriceHTML.textContent = `${percentage} USD`
+                totalHTML.textContent = `${total}USD`
+            });
+
+            domLoadSubtotal += costoEnUSD;
+            domLoadShipPrice += calcPercentage(domLoadSubtotal);
+            domLoadTotal = domLoadSubtotal + domLoadShipPrice;
+
+            subtotalHTML.textContent = `${domLoadSubtotal} USD`;
+            shipPriceHTML.textContent = `${domLoadShipPrice} USD`
+            totalHTML.textContent = `${domLoadTotal}USD`
 
             user_cart.innerHTML +=
                 `<div class="container">
