@@ -9,6 +9,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -84,148 +85,141 @@
     </div>
     </div>
 
-    <div class="product-info-div">
-      <hr>
-      <h2 class="text-muted">Tipo de envío</h2>
+    <form class="row g-3 needs-validation" novalidate>
+      <div class="product-info-div">
+        <hr>
+        <h2 class="text-muted">Tipo de envío</h2>
 
-      <form>
-        <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked>
-        <label for="premium" class="text-muted ">Premium 2 a 5 días (15%)</label><br>
-        <input class="form-check-input" type="radio" id="express" name="tipo_envio">
-        <label for="express" class="text-muted">Express 5 a 8 días (7%)</label><br>
-        <input class="form-check-input" type="radio" id="standar" name="tipo_envio">
-        <label for="standar" class="text-muted">Standar 12 a 15 días (5%)</label>
-      </form><br>
-      <h2 class="text-muted">Dirección de envío</h2>
+        <form>
+          <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked>
+          <label for="premium" class="text-muted ">Premium 2 a 5 días (15%)</label><br>
+          <input class="form-check-input" type="radio" id="express" name="tipo_envio">
+          <label for="express" class="text-muted">Express 5 a 8 días (7%)</label><br>
+          <input class="form-check-input" type="radio" id="standar" name="tipo_envio">
+          <label for="standar" class="text-muted">Standar 12 a 15 días (5%)</label>
+        </form><br>
+        <h2 class="text-muted">Dirección de envío</h2>
 
+        <form form id="buy_form" class="row g-3 needs-validation" novalidate>
+          <div class="row d-flex flex-wrap">
 
-    <form form id="buy_form" class="row g-3 needs-validation" novalidate>
-      
-      <div class="row d-flex flex-wrap">
-        <div class="col-12 col-sm-6">
-          <label for="calle" class="text-muted">Calle</label>
-          <input class="form-control " type="text" id="calle" name="calle" required>
-          <div class="invalid-feedback">
-            Ingresa una calle.
-          </div>
-        </div>
-        <div class="col-12 col-sm-6">
-          <label for="numero" class="text-muted">Número</label>
-          <input class="form-control col-12 col-sm-6" type="tel" id="numero" name="numero" required>
-          <div class="invalid-feedback">
-            Ingresa un número.
-          </div>
-        </div>
-        <div class="col-12 col-sm-6">
-          <label for="esquina" class="text-muted">Esquina</label>
-          <input class="form-control col-12 col-sm-6" type="text" id="esquina" name="esquina" required>
-          <div class="invalid-feedback">
-            Ingresa una esquina.
-          </div>
-        </div>
-      </div>
-
-      <!--Costos subtotal y envio-->
-      <hr>
-      <div class="row">
-        <h2 class="text-muted">Costos</h2>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <div class="row d-flex justify-content-between">
-              <h4 class="text-muted col-10">Subtotal</h4>
-              <p class="text-muted col-2">Precio</p>
+            <div class="col-12 col-sm-6">
+              <label for="calle" class="text-muted">Calle</label>
+              <input class="form-control " type="text" id="calle" name="calle" required>
+              <div class="invalid-feedback">
+                Ingresa una calle.
+              </div>
             </div>
-            <p class="text-muted">Costo unitario del producto por cantidad</p>
-          </li>
-          <li class="list-group-item">
-            <div class="row d-flex justify-content-between">
-              <h4 class="text-muted col-10">Costo de envío</h2>
-                <p class="text-muted col-2">Precio</p>
-            </div>
-            <p class="text-muted">Según el tipo de envío</p>
-          </li>
-          <li class="list-group-item">
-            <div class="row d-flex justify-content-between">
-              <h4 class="text-muted col-10">Total($)</h4>
-              <p class="text-muted col-2">Precio</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <hr>
 
-      <!--Forma de pago-->
-      <!-- trigger modal -->
-      <div>
-        <h2 class="text-muted">Forma de Pago</h2>
-        <p id="paymentStatus">No seleccionado.</p>
-        <a href="" data-bs-toggle="modal" data-bs-target="#paymentMethod">Seleccionar forma de pago</a>
-      </div>
-
-      <hr>
-      <button type="submit" class="btn btn-primary control w-50" id="buy_button">
-        Finalizar Compra
-      </button>
-      </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="paymentMethod" tabindex="-1" aria-labelledby="paymentMethodLabel" aria-hidden="true">
-    <div class="modal-dialog">
-
-
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5" id="exampleModalLabel">Seleccione forma de pago</h2>
-        </div>
-        <div class="modal-body">
-          <form class="row g-3 needs-validation" novalidate>
-            <div class="form-check">
-              <input type="radio" class="form-check-input" id="creditcard" name="payment">
-              <label class="form-check-label" for="creditcard">Tarjeta de crédito</label>
+            <div class="col-12 col-sm-6">
+              <label for="numero" class="text-muted">Número</label>
+              <input class="form-control col-12 col-sm-6" type="tel" id="numero" name="numero" required>
               <div class="invalid-feedback">
                 Ingresa un número.
               </div>
             </div>
-            <div class="form-group" id="form-1">
-              <fieldset>
-                <label for="securitycode">Código de seg.:</label><br>
-                <div class="invalid-feedback">
-                  Ingresa un número.
+
+            <div class="col-12 col-sm-6">
+              <label for="esquina" class="text-muted">Esquina</label>
+              <input class="form-control col-12 col-sm-6" type="text" id="esquina" name="esquina" required>
+              <div class="invalid-feedback">
+                Ingresa una esquina.
+              </div>
+            </div>
+          </div>
+
+          <!--Costos subtotal y envio-->
+          <hr>
+          <div class="row">
+            <h2 class="text-muted">Costos</h2>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <div class="row d-flex justify-content-between">
+                  <h4 class="text-muted col-10">Subtotal</h4>
+                  <p class="text-muted col-2">Precio</p>
                 </div>
-                <input type="text" class="form-control" id="securitycode" required><br>
-                <label for="expirationdate">Vencimiento (MM/AA):</label><br>
-                <div class="invalid-feedback">
-                  Ingresa un número.
+                <p class="text-muted">Costo unitario del producto por cantidad</p>
+              </li>
+              <li class="list-group-item">
+                <div class="row d-flex justify-content-between">
+                  <h4 class="text-muted col-10">Costo de envío</h2>
+                    <p class="text-muted col-2">Precio</p>
                 </div>
-                <input type="text" class="form-control" id="expirationdate" required>
-              </fieldset>
-              <hr>
-            </div>
-            <div class="form-check">
-              <input type="radio" class="form-check-input" id="banktransfer" name="payment">
-              <label class="form-check-label" for="banktransfer">Transferencia bancaria</label>
-            </div>
-            <div class="form-group" id="form-2">
-              <fieldset>
-                <label for="accountnumber">Número de cuenta:</label><br>
-                <input type="text" class="form-control" id="accountnumber" required>
-              </fieldset>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                aria-label="Close" id="btnContinuarModal">Continuar</button>
-              <button type="submit" class="btn btn-primary control w-50" id="buy_button">
-                Finalizar Compra
-              </button>
-            </div>
-          </form>
-        </div>
+                <p class="text-muted">Según el tipo de envío</p>
+              </li>
+              <li class="list-group-item">
+                <div class="row d-flex justify-content-between">
+                  <h4 class="text-muted col-10">Total($)</h4>
+                  <p class="text-muted col-2">Precio</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <hr>
+
+          <!--Forma de pago-->
+          <!-- trigger modal -->
+          <div>
+            <h2 class="text-muted">Forma de Pago</h2>
+            <p id="paymentStatus">No seleccionado.</p>
+            <a href="" data-bs-toggle="modal" data-bs-target="#paymentMethod">Seleccionar forma de pago</a>
+          </div>
+
+          <hr>
+          <button type="submit" class="btn btn-primary control w-50" id="buy_button">
+            Finalizar Compra
+          </button>
+        </form>
+
       </div>
-    </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="paymentMethod" tabindex="-1" aria-labelledby="paymentMethodLabel" aria-hidden="true">
+        <form form id="buy_modal" class="row g-3 needs-validation" novalidate>
+                <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title fs-5" id="exampleModalLabel">Seleccione forma de pago</h2>
+              </div>
+              <div class="modal-body">
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="creditcard" name="payment">
+                    <label class="form-check-label" for="creditcard">Tarjeta de crédito</label>
+                  </div>
+                  <div class="form-group" id="form-1">
+                    <fieldset>
+                      <label for="securitycode">Número de Tarjeta:</label><br>
+                      <input type="text" class="form-control" id="cardnumber" required><br>
+
+                      <label for="securitycode">Código de seg.:</label><br>
+                      <input type="text" class="form-control" id="securitycode" required><br>
+
+                      <label for="expirationdate">Vencimiento (MM/AA):</label><br>
+                      <input type="text" class="form-control" id="expirationdate" required>
+                    </fieldset>
+                    <hr>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="banktransfer" name="payment">
+                    <label class="form-check-label" for="banktransfer">Transferencia bancaria</label>
+                  </div>
+                  <div class="form-group" id="form-2">
+                    <fieldset>
+                      <label for="accountnumber">Número de cuenta:</label><br>
+                      <input type="text" class="form-control" id="accountnumber" required>
+                    </fieldset>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close"
+                      id="btnCerrarModal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" id="btnContinuarModal">Continuar</button>
+                  </div>
+              </div>
+            </div>
+        </div>  
+        </form>
 
     </form>
-
   </main>
 
   <footer class="text-muted" id="footer">

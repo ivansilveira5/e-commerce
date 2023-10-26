@@ -3,6 +3,7 @@ user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));
 const buyForm = document.getElementById("buy_form");
+const buyModal = document.getElementById("buy_modal");
   
 async function fetchData() {
     await fetch(CART_URL)
@@ -77,21 +78,30 @@ buyForm.addEventListener("submit", function(event){
 });
 
 // Obtén una referencia al input tipo radio y al campo de texto
+const calle = document.getElementById("calle");
+const numero = document.getElementById("numero");
+const esquina = document.getElementById("esquina");
+
 const creditcard = document.getElementById("creditcard");
 const banktransfer = document.getElementById("banktransfer");
+const cardnumber = document.getElementById("cardnumber");
 const accountNumberField = document.getElementById("accountnumber");
 const securitycode = document.getElementById("securitycode");
 const expirationdate = document.getElementById("expirationdate");
 
+
 const paymentStatusParagraph = document.getElementById("paymentStatus");
 const buyButton = document.getElementById("buy_button");
-
+const continuarButton = document.getElementById("btnContinuarModal");
+var formaPago = false;
 
 
 creditcard.addEventListener("change", function () {
     if (creditcard.checked) {
         accountNumberField.disabled = true;
         accountNumberField.style.backgroundColor = "#ccc";
+        cardnumber.disabled = false;
+        cardnumber.style.backgroundColor = "";
         securitycode.disabled = false;
         securitycode.style.backgroundColor = "";
         expirationdate.disabled = false;
@@ -105,6 +115,8 @@ banktransfer.addEventListener("change", function () {
     if (banktransfer.checked) {
         accountNumberField.disabled = false;
         accountNumberField.style.backgroundColor = "";
+        cardnumber.disabled = true;
+        cardnumber.style.backgroundColor = "#ccc";
         securitycode.disabled = true;
         securitycode.style.backgroundColor = "#ccc";
         expirationdate.disabled = true;
@@ -120,30 +132,43 @@ buyButton.addEventListener("click", function(){
         paymentStatusParagraph.textContent = "Debe seleccionar una forma de pago.";
         paymentStatusParagraph.style.color = "#ff0000";
     }
-})
-
-const btnContinuar = document.getElementById('btnContinuarModal');
-(function validarModal(){
-    const creditCard = document.getElementById('creditcard');
-    const securityCode = document.getElementById('securitycode');
-    const expirationDate = document.getElementById('expirationdate');
-    const accountNumber = document.getElementById('accountnumber');
-    let objsToIterate = [creditCard, securityCode, expirationDate, accountNumber];
-    
-    if(creditCard.value == '' || securityCo.value == '' || expirationDate.value == '' || accountNumber.value == ''){
-        objsToIterate.forEach(element => {
-            element.setCustomValidity('Debes seleccionar un campo')
+    if(calle.value !== "" && numero.value !== "" && esquina.value !== "" && formaPago)
+    {
+      return Swal.fire({
+          icon: "success",
+          title: "¡Has realizado tu compra con éxito!",
         });
     }
+    buyForm.classList.add("was-validated")
 })
-btnContinuar.addEventListener('click', validarModal)
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+
+continuarButton.addEventListener("click", function(event){
+    if (creditcard.checked && cardnumber.value !== "" && securitycode.value !== "" && expirationdate.value !== "")
+    {
+        paymentStatusParagraph.classList.remove('text-muted')
+        paymentStatusParagraph.style.color = "#008000";
+        formaPago = true;
+    } 
+    else if (banktransfer.checked && accountNumberField.value !== "")
+    {
+            paymentStatusParagraph.classList.remove('text-muted')
+            paymentStatusParagraph.style.color = "#008000";
+            formaPago = true;
+    }
+    else
+    {
+        formaPago = false; 
+    }
+    buyModal.classList.add("was-validated");
+    event.preventDefault();
+})
+
 (function () {
     'use strict'
   
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     let forms = document.querySelectorAll('.needs-validation')
-  
+    
     // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
       .forEach(function (form) {
@@ -155,5 +180,6 @@ btnContinuar.addEventListener('click', validarModal)
   
           form.classList.add('was-validated')
         }, false)
+        
       })
   })()
