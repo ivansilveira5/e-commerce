@@ -2,7 +2,9 @@ CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));
-let subtotalFinal = 0;
+
+
+/*let subtotalFinal = 0;
 const subtotalHTML = document.getElementById('subtotalHTML');
 const shipPriceHTML = document.getElementById('shipPriceHTML');
 const totalHTML = document.getElementById('totalHTML');
@@ -11,10 +13,10 @@ const expressCheck = document.getElementById('express');
 const standarCheck = document.getElementById('standar');
 let domLoadSubtotal = 0;
 let domLoadShipPrice = 0;
-let domLoadTotal = 0;
+let domLoadTotal = 0;*/
  
 
-function calcPercentage(num){
+/*function calcPercentage(num){
     let result = 0;
     if(premiumCheck.checked) {
         result = num * premiumCheck.value
@@ -24,7 +26,7 @@ function calcPercentage(num){
         result = num * standarCheck.value
     }
     return result
-}
+}*/
 
 async function fetchData() {
     await fetch(CART_URL)
@@ -52,46 +54,19 @@ async function fetchData() {
         articles.forEach(element => {
             // Convertir el costo a USD si la moneda no es USD
             const costoEnUSD = Math.round((element.currency === "USD") ?  element.unitCost : element.unitCost / uyUstoUSD);
-
-            // Función para calcular y actualizar el subtotal
-            let previousCount = 0; // Inicializa el valor anterior en 0
+            
+            /*let previousCount = 0;
             let percentage = 0;
-            let total = 0;
+            let total = 0;*/
+            
 
-            addEventListener("input", (UpdateValue) => {
-                const countInput = document.getElementById(`countValue${element.id}`);
-                const subtotalElement = document.getElementById(`subtotal${element.id}`);
-                let count = parseInt(countInput.value);
-                let subtotal = count * costoEnUSD;
-
-                if (count > previousCount) {
-                    subtotalFinal += count * costoEnUSD;                    
-                } else if (count < previousCount) {
-                    subtotalFinal -= subtotal;                    
-                }
-
-                if(count == 0) {
-                    subtotalFinal = 0;
-                }
-
-                percentage = calcPercentage(subtotalFinal);
-                total = subtotalFinal + percentage;
-                previousCount = count; // Actualiza el valor anterior
-                console.log(subtotal);
-                subtotalElement.textContent = `Subtotal: ${subtotal} USD`;
-                console.log(subtotalFinal);
-                subtotalHTML.textContent = `${subtotalFinal} USD`;
-                shipPriceHTML.textContent = `${percentage} USD`
-                totalHTML.textContent = `${total}USD`
-            });
-
-            domLoadSubtotal += costoEnUSD;
+            /* domLoadSubtotal += costoEnUSD;
             domLoadShipPrice += calcPercentage(domLoadSubtotal);
             domLoadTotal = domLoadSubtotal + domLoadShipPrice;
 
             subtotalHTML.textContent = `${domLoadSubtotal} USD`;
             shipPriceHTML.textContent = `${domLoadShipPrice} USD`
-            totalHTML.textContent = `${domLoadTotal}USD`
+            totalHTML.textContent = `${domLoadTotal}USD` */
 
             user_cart.innerHTML +=
                 `<div class="container">
@@ -106,11 +81,11 @@ async function fetchData() {
                             <div class="row d-flex align-items-center flex-wrap">
                                 <div class="col-6 col-sm-5">
                                     <label for="countValue" class="text-muted">Cant.</label>
-                                    <input name="countValue" id="countValue${element.id}" class="form-control h-50 w-75" type="number" min="0" value="${element.count}" data-id="${element.id}" oninput="actualizarSubtotal()">
+                                    <input name="countValue" id="countValue${element.id}" class="form-control h-50 w-75 calculateTotal" type="number" oninput min="1" value="${element.count}" data-id="${element.id}">
                                 </div>
                                 <p class="col-5 text-muted" id="subtotal${element.id}">Subtotal: ${element.count * costoEnUSD} USD</p>
                                 <div class="col-1">
-                                    <button type="button" data-id="${element.id}" class="btn btn-outline-danger button-delete" >
+                                    <button type="button" data-id="${element.id}" class="btn btn-outline-danger button-delete calculateTotal" >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                                         </svg>
@@ -144,7 +119,94 @@ async function fetchData() {
 
 
 
+// calculo del total
+function calculoSubtotal(array) {
+    let subtotal = [];
+    let subtotalFinal = 0;
+    array.forEach(object => {
+        let result = object.itemCount * object.itemPrice;
+        subtotal.push(result)
+    });
 
-  
+    subtotal.forEach(value => {
+        subtotalFinal += value;
+    })
+    console.log(`Soy el array de subtotales ${subtotal}`)
+    console.log(`Soy el subtotal final ${subtotalFinal}`);
+}
+function obtenerValores() { //dataNeeded es el array que debemos pasar como parámetro
+    let valores = [];
+    let localStItems =  JSON.parse(localStorage.getItem('local_Cart'));
+    console.log(`Soy el local storage ${localStItems}`)
+    localStItems.forEach(localItem => {
+        valores.push({
+            itemId : localItem.id,
+            itemCount : localItem.count,
+            itemPrice: localItem.unitCost
+        })
+    });
+    console.log(valores);
+    calculoSubtotal(valores);
+}
+obtenerValores()
+
+
+
+
+//let calculateTotal = document.getElementsByClassName("calculateTotal");
+//let calculateElements = Array.from(calculateTotal);
+
+/* for (let i = 0; i < calculateElements.length; i++) {
+    calculateElements[i].addEventListener('click', );
+} */
+
+
+/* calculateTotal.addEventListener("click", ()=> {
+
+    const subtotalHTML = document.getElementById('subtotalHTML');
+    const shipPriceHTML = document.getElementById('shipPriceHTML');
+    const totalHTML = document.getElementById('totalHTML');
+    const premiumCheck = document.getElementById('premium');
+    const expressCheck = document.getElementById('express');
+    const standarCheck = document.getElementById('standar');
+
+
+    
+    
+        console.log("leido")
+    } );
+
+*/
+
+
+
+addEventListener("input", (UpdateValue) => {
+    const countInput = document.getElementById(`countValue${element.id}`);
+    const subtotalElement = document.getElementById(`subtotal${element.id}`);
+    let count = parseInt(countInput.value);
+    let subtotal = count * costoEnUSD;
+
+   /* if (count > previousCount) {
+        subtotalFinal += count * costoEnUSD;                    
+    } else if (count < previousCount) {
+        subtotalFinal -= subtotal;                    
+    }
+
+    if(count == 0) {
+        subtotalFinal = 0;
+    }
+
+    percentage = calcPercentage(subtotalFinal);
+    total = subtotalFinal + percentage;
+    previousCount = count; // Actualiza el valor anterior
+    console.log(subtotal);
+    subtotalElement.textContent = `Subtotal: ${subtotal} USD`;
+    console.log(subtotalFinal);
+    subtotalHTML.textContent = `${subtotalFinal} USD`;
+    shipPriceHTML.textContent = `${percentage} USD`
+    totalHTML.textContent = `${total}USD` */
+});
+
+
 mostrarCarrito(CART);
   
