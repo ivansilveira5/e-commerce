@@ -84,11 +84,11 @@
         <h2 class="text-muted">Tipo de envío</h2>
 
         <form>
-          <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked>
+          <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked value="0.15">
           <label for="premium" class="text-muted ">Premium 2 a 5 días (15%)</label><br>
-          <input class="form-check-input" type="radio" id="express" name="tipo_envio">
+          <input class="form-check-input" type="radio" id="express" name="tipo_envio" value="0.7">
           <label for="express" class="text-muted">Express 5 a 8 días (7%)</label><br>
-          <input class="form-check-input" type="radio" id="standar" name="tipo_envio">
+          <input class="form-check-input" type="radio" id="standar" name="tipo_envio" value="0.5">
           <label for="standar" class="text-muted">Standar 12 a 15 días (5%)</label>
         </form><br>
         <h2 class="text-muted">Dirección de envío</h2>
@@ -129,21 +129,21 @@
               <li class="list-group-item">
                 <div class="row d-flex justify-content-between">
                   <h4 class="text-muted col-10">Subtotal</h4>
-                  <p class="text-muted col-2">Precio</p>
+                  <p class="text-muted col-2" id="priceSubTotal">Precio</p>
                 </div>
                 <p class="text-muted">Costo unitario del producto por cantidad</p>
               </li>
               <li class="list-group-item">
                 <div class="row d-flex justify-content-between">
                   <h4 class="text-muted col-10">Costo de envío</h2>
-                    <p class="text-muted col-2">Precio</p>
+                    <p class="text-muted col-2" id="priceEnvio">Precio</p>
                 </div>
                 <p class="text-muted">Según el tipo de envío</p>
               </li>
               <li class="list-group-item">
                 <div class="row d-flex justify-content-between">
                   <h4 class="text-muted col-10">Total($)</h4>
-                  <p class="text-muted col-2">Precio</p>
+                  <p class="text-muted col-2" id="priceTotal">Precio</p>
                 </div>
               </li>
             </ul>

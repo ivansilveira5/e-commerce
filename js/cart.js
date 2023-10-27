@@ -2,6 +2,24 @@ CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));
+const buyForm = document.getElementById("buy_form");
+const buyModal = document.getElementById("buy_modal");
+const calle = document.getElementById("calle");
+const numero = document.getElementById("numero");
+const esquina = document.getElementById("esquina");
+
+const creditcard = document.getElementById("creditcard");
+const banktransfer = document.getElementById("banktransfer");
+const cardnumber = document.getElementById("cardnumber");
+const accountNumberField = document.getElementById("accountnumber");
+const securitycode = document.getElementById("securitycode");
+const expirationdate = document.getElementById("expirationdate");
+
+
+const paymentStatusParagraph = document.getElementById("paymentStatus");
+const buyButton = document.getElementById("buy_button");
+const continuarButton = document.getElementById("btnContinuarModal");
+var formaPago = false;
 
 /*
 const subtotalHTML = document.getElementById('subtotalHTML');
@@ -45,7 +63,8 @@ function exchange(){
             console.log(`Soy un costoEnUSD individual ${costoEnUSD}`)
 
             addEventListener("input", (UpdateValue) => {
-                
+                obtenerValores()
+                inputEvents(element.id)
             });
 
             user_cart.innerHTML +=
@@ -97,23 +116,49 @@ function exchange(){
     .catch(error => console.error("Error al obtener tasas de cambio:", error));
 }
 
-
+const radiooPremium = document.getElementById("premium");
+const radioExpress = document.getElementById("express");
+const radioStandar = document.getElementById("standar");
 
 // calculo del total
 function calculoSubtotal(array) {
     let subtotal = [];
     let subtotalFinal = 0;
+    let porcentajeFinal = 0;
     array.forEach(object => {
         let result = object.itemCount * object.itemPrice;
         subtotal.push(result)
+        let subtotalHTMLIndividual = document.getElementById(`subtotal${object.itemId}`)
+        subtotalHTMLIndividual.textContent = `${result} USD`
+        if(radiooPremium.checked)
+        {
+            porcentajeFinal += radiooPremium.value * result;
+        }
+        if(radioExpress.checked)
+        {
+            porcentajeFinal += radioExpress.value * result;
+        }
+        if(radioStandar.checked)
+        {
+            porcentajeFinal += radioStandar.value * result;
+        }
     });
 
     subtotal.forEach(value => {
         subtotalFinal += value;
     })
-    console.log(`Soy el array de subtotales ${subtotal}`)
-    console.log(`Soy el subtotal final ${subtotalFinal}`);
+
+    let subtotalHTMLCostos = document.getElementById('priceSubTotal');
+    subtotalHTMLCostos.textContent = `${subtotalFinal} USD`
+    let envioHTMLCostos = document.getElementById('priceEnvio');
+    envioHTMLCostos.textContent = `${porcentajeFinal} USD`
+    let totalHTMLCostos = document.getElementById('priceTotal');
+    totalHTMLCostos.textContent = `${subtotalFinal + porcentajeFinal} USD`
 }
+
+addEventListener("DOMContentLoaded", (event) => {    
+    obtenerValores();
+});
 
 async function obtenerValores() { //dataNeeded es el array que debemos pasar como parámetro
     let valores = [];
@@ -128,39 +173,25 @@ async function obtenerValores() { //dataNeeded es el array que debemos pasar com
             itemPrice: costoEnUSD
         })
     });
-    console.log(vamlores);
+    console.log(valores);
     calculoSubtotal(valores);
 }
 
-function inputEvents(){
-    const countInput = document.getElementById(`countValue${element.id}`);
+function inputEvents(expectedId){
+    const countInput = document.getElementById(`countValue${expectedId}`);
+    let localStorageInputs = JSON.parse(localStorage.getItem('local_Cart'));
     /*const subtotalElement = document.getElementById(`subtotal${element.id}`);
     let count = parseInt(countInput.value);
     let subtotal = count * costoEnUSD;*/
+    let objetoActualizado = localStorageInputs.find(obj => obj.id === expectedId);
+    if (objetoActualizado) {
+        objetoActualizado.count = countInput.value;
+    }
+    localStorage.setItem('local_Cart', JSON.stringify(localStorageInputs));
+    obtenerValores();
 }
 
 mostrarCarrito(CART);
-
-// Obtén una referencia al input tipo radio y al campo de texto
-const buyForm = document.getElementById("buy_form");
-const buyModal = document.getElementById("buy_modal");
-const calle = document.getElementById("calle");
-const numero = document.getElementById("numero");
-const esquina = document.getElementById("esquina");
-
-const creditcard = document.getElementById("creditcard");
-const banktransfer = document.getElementById("banktransfer");
-const cardnumber = document.getElementById("cardnumber");
-const accountNumberField = document.getElementById("accountnumber");
-const securitycode = document.getElementById("securitycode");
-const expirationdate = document.getElementById("expirationdate");
-
-
-const paymentStatusParagraph = document.getElementById("paymentStatus");
-const buyButton = document.getElementById("buy_button");
-const continuarButton = document.getElementById("btnContinuarModal");
-var formaPago = false;
-
 
 creditcard.addEventListener("change", function () {
     if (creditcard.checked) {
@@ -200,13 +231,14 @@ buyButton.addEventListener("click", function(event){
     }
     if(calle.value !== "" && numero.value !== "" && esquina.value !== "" && formaPago)
     {
-      return Swal.fire({
-          icon: "success",
-          title: "¡Has realizado tu compra con éxito!",
-        });
+        event.preventDefault();
+        return Swal.fire({
+            icon: "success",
+            title: "¡Has realizado tu compra con éxito!",
+            });
     }
     buyForm.classList.add("was-validated")
-    event.preventDefault();
+    event.preventDefault(); 
 })
 
 continuarButton.addEventListener("click", function(event){
