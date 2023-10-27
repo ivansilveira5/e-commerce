@@ -1,6 +1,6 @@
 CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
-// const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
+const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 
 const localStorageCart = JSON.parse(localStorage.getItem("local_Cart"));
 
@@ -42,4 +42,17 @@ fetch(CART_URL)
     console.error("Error al obtener datos del servidor:", error);
   });
 
+  // Fetch del cambio de moneda - El valor en pesos debe ser dividido por el valor que devuelve esta función
+
+  function exchange(){
+    return fetch(exchangeRateApiUrl)
+    .then(response => response.json())
+    .then(data => {
+        const rates = data.rates;
+        const uyUstoUSD = rates.UYU;
+        console.log(uyUstoUSD);
+        return uyUstoUSD
+     }
+    )
+}
 
