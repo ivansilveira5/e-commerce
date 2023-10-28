@@ -34,8 +34,14 @@ async function fetchData() {
     await fetch(CART_URL)
       .then((response) => response.json())
       .then((data) => {      
-        console.log(data);
-        mostrarCarrito(data.articles)
+        let dataPeugeot = data.articles[0];
+        let localStoragePeugeot = JSON.parse(localStorage.getItem("local_Cart"))
+        let filterPeugeot = localStoragePeugeot.filter((obj) => obj.id == dataPeugeot.id);
+        console.log(dataPeugeot)
+        if(filterPeugeot.length == 0){
+            localStoragePeugeot.push(dataPeugeot);
+            localStorage.setItem('local_Cart', JSON.stringify(localStoragePeugeot));
+        } else (console.log('ya existe el peugeot'))
       })
       .catch("error");
   }
