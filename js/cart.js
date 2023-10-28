@@ -80,7 +80,7 @@ function exchange(){
                             <div class="row d-flex align-items-center flex-wrap">
                                 <div class="col-6 col-sm-5">
                                     <label for="countValue" class="text-muted">Cant.</label>
-                                    <input name="countValue" id="countValue${element.id}" class="form-control h-50 w-75" oninput min="1" value="${element.count}" data-id="${element.id}">
+                                    <input type="number" name="countValue" id="countValue${element.id}" class="form-control h-50 w-75" min="1" value="${element.count}" data-id="${element.id}" oninput="if (this.value == 0) {this.value = 1;}">
                                 </div>
                                 <p class="col-5 text-muted" id="subtotal${element.id}">Subtotal: ${element.count * costoEnUSD} USD</p>
                                 <div class="col-1">
@@ -93,9 +93,9 @@ function exchange(){
                             </div>
                         </div>
                     </div>
-                </div>`;
+                </div>`;  
+        });
 
-        }); 
         const deleteButtons = document.getElementsByClassName("button-delete");
         console.log(deleteButtons)
         const arraybuttons = Array.from(deleteButtons)
