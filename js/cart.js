@@ -142,11 +142,11 @@ function calculoSubtotal(array) {
         }
         if(radioExpress.checked)
         {
-            porcentajeFinal += radioExpress.value * result;
+            porcentajeFinal += (radioExpress.value * result) / 10;
         }
         if(radioStandar.checked)
         {
-            porcentajeFinal += radioStandar.value * result;
+            porcentajeFinal += (radioStandar.value * result) / 10;
         }
     });
 
