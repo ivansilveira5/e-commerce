@@ -78,11 +78,77 @@
     </div>
   </nav>
   <main>
+
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="text-center p-4">
+
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-md-8 order-md-1">
+          <h2 class="text-muted">Perfil</h2>
+          <form form id="profileForm" class="row g-3 needs-validation" novalidate>
+            <hr>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="profileFirstName" class="text-muted">Primer Nombre *</label>
+                <input type="text" class="form-control" id="profileFirstName" value="" name="profileFirstName" required>
+                <div class="invalid-feedback">
+                  Ingresa un nombre
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="profileSecondName" class="text-muted">Segundo Nombre</label>
+                <input type="text" class="form-control" id="profileSecondName" value="" name="profileSecondName">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="profileFirstLastname" class="text-muted">Primer Apellido *</label>
+                <input type="text" class="form-control" id="profileFirstLastname" value="" name="profileFirstLastname" required>
+                <div class="invalid-feedback">
+                  Ingresa un apellido
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="profileSecondLastname" class="text-muted">Segundo Apellido</label>
+                <input type="text" class="form-control" id="profileSecondLastname" value="" name="profileSecondLastname">
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label for="profileNumber" class="text-muted">Telefono *</label>
+                <input type="number" class="form-control" id="profileNumber" value="" name="profileNumber" required>
+                <div class="invalid-feedback">
+                  Ingresa un numero
+                </div>
+              </div>              
+              <div class="col-md-6 mb-3">
+                <label for="profileMail" class="text-muted">E-Mail</label>
+                <input type="text" class="form-control" id="profileMail" value="" name="profileMail">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="profileImage" class="text-muted">Imagen de Perfil</label>
+                <input type="file" class="form-control" id="profileImage" value="" name="profileImage">
+              </div>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-primary control w-50" id="saveProfileButton">
+              Guardar
+            </button>
+          </form>
+        </div>
       </div>
     </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
