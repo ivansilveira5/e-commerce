@@ -30,72 +30,65 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="cart.html">Carrito </a></li>
-                <li><a class="dropdown-item" href="my-profile.html">Perfil</a></li>
-                <li><a class="dropdown-item" href="login.html"
-                    onclick=" localStorage.setItem('loggedin', 'false')">Cerrar Session</a></li>
-                <li id="lightMode-icons-div">
-                  <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon"
-                    width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
-                  </svg>
-                  <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high"
-                    width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
-                    <path d="M6.343 17.657l-1.414 1.414" />
-                    <path d="M6.343 6.343l-1.414 -1.414" />
-                    <path d="M17.657 6.343l1.414 -1.414" />
-                    <path d="M17.657 17.657l1.414 1.414" />
-                    <path d="M4 12h-2" />
-                    <path d="M12 4v-2" />
-                    <path d="M20 12h2" />
-                    <path d="M12 20v2" />
-                  </svg>
-                </li>
-              </ul>
-            </div>
+          <li class="nav-item"><div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Carrito </a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Perfil</a></li>
+              <li><a class="dropdown-item" href="login.html" onclick=" localStorage.setItem('loggedin', 'false')">Cerrar Session</a></li>
+              <li id="lightMode-icons-div">
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                </svg>
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+                  <path d="M6.343 17.657l-1.414 1.414" />
+                  <path d="M6.343 6.343l-1.414 -1.414" />
+                  <path d="M17.657 6.343l1.414 -1.414" />
+                  <path d="M17.657 17.657l1.414 1.414" />
+                  <path d="M4 12h-2" />
+                  <path d="M12 4v-2" />
+                  <path d="M20 12h2" />
+                  <path d="M12 20v2" />
+                </svg>
+             </li>
+            </ul>
+          </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
-  <main id="main-container">
-
+  
+  <main id="main-container"> 
+    
     <div class="product-info-div">
-      <div class="h1">
-        <h1 class="text-muted pt-4">Carrito de compras</h1>
-      </div>
-      <hr>
-      <!-- Estructura de columnas para JS-->
-      <div id="user_cart">
+        <div class="h1">
+          <h1 class="text-muted pt-4">Carrito de compras</h1>
+        </div>
+          <hr>
+          <!-- Estructura de columnas para JS-->
+          <div id="user_cart">
 
-      </div>
+          </div>
+        </div> 
     </div>
-    </div>
-
+    
     <form class="row g-3 needs-validation" novalidate>
       <div class="product-info-div">
         <hr>
         <h2 class="text-muted">Tipo de envío</h2>
 
         <form>
-          <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked>
+          <input class="form-check-input" type="radio" id="premium" name="tipo_envio" checked value="0.15">
           <label for="premium" class="text-muted ">Premium 2 a 5 días (15%)</label><br>
-          <input class="form-check-input" type="radio" id="express" name="tipo_envio">
+          <input class="form-check-input" type="radio" id="express" name="tipo_envio" value="0.7">
           <label for="express" class="text-muted">Express 5 a 8 días (7%)</label><br>
-          <input class="form-check-input" type="radio" id="standar" name="tipo_envio">
+          <input class="form-check-input" type="radio" id="standar" name="tipo_envio" value="0.5">
           <label for="standar" class="text-muted">Standar 12 a 15 días (5%)</label>
         </form><br>
         <h2 class="text-muted">Dirección de envío</h2>
@@ -136,21 +129,21 @@
               <li class="list-group-item">
                 <div class="row d-flex justify-content-between">
                   <h4 class="text-muted col-10">Subtotal</h4>
-                  <p class="text-muted col-2">Precio</p>
+                  <p class="text-muted col-2" id="priceSubTotal">Precio</p>
                 </div>
                 <p class="text-muted">Costo unitario del producto por cantidad</p>
               </li>
               <li class="list-group-item">
                 <div class="row d-flex justify-content-between">
                   <h4 class="text-muted col-10">Costo de envío</h2>
-                    <p class="text-muted col-2">Precio</p>
+                    <p class="text-muted col-2" id="priceEnvio">Precio</p>
                 </div>
                 <p class="text-muted">Según el tipo de envío</p>
               </li>
               <li class="list-group-item">
                 <div class="row d-flex justify-content-between">
                   <h4 class="text-muted col-10">Total($)</h4>
-                  <p class="text-muted col-2">Precio</p>
+                  <p class="text-muted col-2" id="priceTotal">Precio</p>
                 </div>
               </li>
             </ul>
@@ -220,16 +213,15 @@
         </form>
 
     </form>
-  </main>
 
+  </main>
   <footer class="text-muted" id="footer">
     <hr>
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
   <div id="spinner-wrapper">
@@ -247,5 +239,4 @@
   <script src="js/cart.js"></script>
   <script src="js/dark-mode.js"></script>
 </body>
-
 </html>

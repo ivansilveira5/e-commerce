@@ -212,19 +212,38 @@ function createComments(array) {
   //Agregar al carrito
 
   function addToCart() {
-    alert("Se agregó el producto al carrito")
+    
     const currentCart = JSON.parse(localStorage.getItem("local_Cart")) || [];
     
-    const newArticle = {
-        "id": currentProduct.id,
-        "name": currentProduct.name,
-        "count": 1,
-        "unitCost": currentProduct.cost,
-        "currency": currentProduct.currency,
-        "image": currentProduct.images[0]
-    };
+    const currentProductId = currentProduct.id;
+    const existingArticle = currentCart.find(article => article.id === currentProductId);
 
-    currentCart.push(newArticle);
+    if (existingArticle) {
+        // Si el artículo ya existe en el carrito, aumenta el count en 1
+        existingArticle.count += 1;
+         Swal.fire({
+          icon: "error",
+          title: "¡El artículo ya existe en el carrito!",
+          confirmButtonText: "Aceptar"
+          });
+    } else {
+        // Si el artículo no existe en el carrito, agrégalo como un nuevo artículo
+        const newArticle = {
+            "id": currentProduct.id,
+            "name": currentProduct.name,
+            "count": 1,
+            "unitCost": currentProduct.cost,
+            "currency": currentProduct.currency,
+            "image": currentProduct.images[0]
+        };
+
+        currentCart.push(newArticle);
+         Swal.fire({
+          icon: "success",
+          title: "¡Se agregó el producto al carrito de compras!",
+          confirmButtonText: "Aceptar"
+          });
+    }
 
     localStorage.setItem("local_Cart", JSON.stringify(currentCart));
 }
