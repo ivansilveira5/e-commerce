@@ -83,6 +83,8 @@
         email: profileMail.value,
         password: password
     }
+
+    
       // cambiamos los datos en localStorage
       localStorage.setItem("users",JSON.stringify(datosNuevos))
     }}
