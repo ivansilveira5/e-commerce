@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: password
+        password: password,
+        profileImage: "default"
       };
       const users = JSON.parse(localStorage.getItem("users")) || [];
       users.push(user);

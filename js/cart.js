@@ -19,16 +19,8 @@ const expirationdate = document.getElementById("expirationdate");
 const paymentStatusParagraph = document.getElementById("paymentStatus");
 const buyButton = document.getElementById("buy_button");
 const continuarButton = document.getElementById("btnContinuarModal");
-var formaPago = false;
+let formaPago = false;
 
-/*
-const subtotalHTML = document.getElementById('subtotalHTML');
-const shipPriceHTML = document.getElementById('shipPriceHTML');
-const totalHTML = document.getElementById('totalHTML');
-const premiumCheck = document.getElementById('premium');
-const expressCheck = document.getElementById('express');
-const standarCheck = document.getElementById('standar');
-*/
 
 async function fetchData() {
     await fetch(CART_URL)
