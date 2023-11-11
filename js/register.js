@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMaContentLoaded", function() {
     const registrationForm = document.getElementById("registrationForm");
     
     registrationForm.addEventListener("submit", function(event) {
@@ -11,8 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: password,
-        profileImage: "default"
+        password: password
       };
       const users = JSON.parse(localStorage.getItem("users")) || [];
       users.push(user);

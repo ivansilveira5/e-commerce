@@ -35,8 +35,8 @@
   // Imagen de perfil
   let imgcanvas = document.getElementById("imgcanvas");
   let profileImage = document.getElementById("profileImage");
-  let defaultProfile = "img/img_perfil.png";
-  let profileIMG ;
+  // let profileIMG = localStorage.getItem("profileIMG")
+  
   // Boton guardar
   let saveProfileButton = document.getElementById("saveProfileButton");
   // Usuario
@@ -53,14 +53,7 @@
     if (usuario.phoneNumber) {profileNumber.value = usuario.phoneNumber}
     
     // imagen de perfil
-    document.querySelector("#profileImage").addEventListener("change", ()=> {
-      console.log("che capo aca andamo")
-      const reader = new FileReader();
-
-      reader.addEventListener("load", () => {
-        profileIMG =  reader.result
-      })
-    })
+   
 
   // Función para cambiar datos de usuario
   saveProfileButton.addEventListener("click", ()=>{
@@ -87,6 +80,9 @@
     
       // cambiamos los datos en localStorage
       localStorage.setItem("users",JSON.stringify(datosNuevos))
+
+      // cambiamos datos de foto de perfil
+      localStorage.setItem("profileIMG", (profileIMG))
     }}
   )
 
