@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
         password: password,
         profileImage: "default"
       };
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const users = JSON.parse(localStorage.getItem("users")) || []
+      console.log(users)
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
       Swal.fire({
