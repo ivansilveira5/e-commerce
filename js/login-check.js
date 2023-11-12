@@ -6,3 +6,5 @@ function verification(){
 
 }
 verification()
+
+//Rafael Souza INC Patent Pending

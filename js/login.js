@@ -5,6 +5,7 @@ function confirmLogin() {
   const password = document.getElementById("password").value;
   // Obtener la lista de usuarios desde el localStorage
   const users = JSON.parse(localStorage.getItem("users")) || [];
+  console.log(users)
   // Buscar el usuario en la lista por su email
   const user = users.find((user) => user.email === email);
   if (user && user.password === password) {
