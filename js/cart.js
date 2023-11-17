@@ -1,4 +1,4 @@
-CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+CART_URL = "http://localhost:4700/json/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
 CART = JSON.parse(localStorage.getItem("local_Cart"));

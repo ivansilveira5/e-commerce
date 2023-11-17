@@ -8,7 +8,7 @@ const local_cart = localStorage.getItem("local_cart")
 
 const PRODUCT_URL = `http://localhost:4700/json/products/${id}.json`;
 const PRODUCT_COMMENTS = `http://localhost:4700/json/products_comments/${id}.json`;
-const CART_URL = "https://github.com/JaPCeibal/emercado-api/blob/main/user_cart/25801.json";
+const CART_URL = "http://localhost:4700/json/user_cart/25801.json";
 
 let currentProduct;
 
