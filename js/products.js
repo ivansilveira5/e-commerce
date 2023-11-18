@@ -1,5 +1,5 @@
 const catNumber = localStorage.getItem("catID");
-const DATA_URL = `https://japceibal.github.io/emercado-api/cats_products/${catNumber}.json`;
+const DATA_URL = `http://localhost:4700/json/cats_products/${catNumber}.json`;
 const container = document.getElementById("product-container");
 const searchInput = document.getElementById("searchInput");
 let filterData;
@@ -7,13 +7,23 @@ let filterData;
 function createProducts(dataArray) {
   container.innerHTML = "";
   for (const item of dataArray) {
-    container.innerHTML += `<div onclick="redirect(${item.id})" class="product-container">
-        <img class="product-img img-thumbnail" src="${item.image}">
-        <div class="product-text">
-             <h1 class="product-title">${item.name} - ${item.currency} ${item.cost}</h1>
-             <p class="product-description">${item.description}</p> 
-        </div>
-        <p class="product-count">${item.soldCount} vendidos</p>
+    container.innerHTML += `
+        
+        <div class="col-8 col-sm-12 mb-2">
+        <div onclick="redirect(${item.id})" class="list-group-item-action cursor-active categoriesCards mt-3">
+          <div class="row">
+            <div class="col-12 col-sm-3">
+              <img class="img-thumbnail" src="${item.image}">
+            </div>
+          <div class="col-12 col-md-9">
+            <div class="d-flex w-100 justify-content-between flex-wrap mb-2">
+              <h4 class="mb-1 text-muted">${item.name} - ${item.currency} ${item.cost}</h4>
+              <p class="product-count text-muted">${item.soldCount} vendidos</p>
+            </div>
+            <p class="product-description text-muted">${item.description}</p> 
+          </div>
+          </div>
+          </div>
     </div>`;
   }
 }
@@ -35,8 +45,8 @@ fetch(DATA_URL)
 function initialize() {
   searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredProducts = filterData.filter((product) =>
-      product?.name?.toLowerCase().includes(searchTerm)
+    const filteredProducts = filterData.filter((product) => 
+    (product?.name?.toLowerCase().includes(searchTerm) || product?.description?.toLowerCase().includes(searchTerm))
     );
     createProducts(filteredProducts);
   });

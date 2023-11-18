@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="js/login-check.js"></script>
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -36,7 +37,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between" id="navBar">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -44,18 +45,113 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"><div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Carrito </a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Perfil</a></li>
+              <li><a class="dropdown-item" href="login.html" onclick=" localStorage.setItem('loggedin', 'false')">Cerrar Session</a></li>
+              <li id="lightMode-icons-div">
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                </svg>
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+                  <path d="M6.343 17.657l-1.414 1.414" />
+                  <path d="M6.343 6.343l-1.414 -1.414" />
+                  <path d="M17.657 6.343l1.414 -1.414" />
+                  <path d="M17.657 17.657l1.414 1.414" />
+                  <path d="M4 12h-2" />
+                  <path d="M12 4v-2" />
+                  <path d="M20 12h2" />
+                  <path d="M12 20v2" />
+                </svg>
+             </li>
+            </ul>
+          </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
+
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="text-center p-4">
+
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-md-8 order-md-1">
+          <div class="d-flex align-items-center justify-content-between"><h2 class="text-muted pt-5">Perfil</h2>
+            <img src="/img/img_perfil.png" id="imgcanvas"></img>
+          </div>
+          <form form id="profileForm" class="row g-3 needs-validation" novalidate>
+            <hr class="mt-4">
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="profileFirstName" class="text-muted">Primer Nombre *</label>
+                <input type="text" class="form-control" id="profileFirstName" value= "" name="profileFirstName" required>
+                <div class="invalid-feedback">
+                  Ingresa un nombre
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="profileSecondName" class="text-muted">Segundo Nombre</label>
+                <input type="text" class="form-control" id="profileSecondName" value="" name="profileSecondName">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="profileFirstLastname" class="text-muted">Primer Apellido *</label>
+                <input type="text" class="form-control" id="profileFirstLastname" value="" name="profileFirstLastname" required>
+                <div class="invalid-feedback">
+                  Ingresa un apellido
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="profileSecondLastname" class="text-muted">Segundo Apellido</label>
+                <input type="text" class="form-control" id="profileSecondLastname" value="" name="profileSecondLastname">
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label for="profileNumber" class="text-muted">Telefono *</label>
+                <input type="number" class="form-control" id="profileNumber" value="" name="profileNumber" required>
+                <div class="invalid-feedback">
+                  Ingresa un numero
+                </div>
+              </div>              
+              <div class="col-md-6 mb-3">
+                <label for="profileMail" class="text-muted">E-Mail</label>
+                <input type="text" class="form-control" id="profileMail" value="" name="profileMail">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="profileImage" class="text-muted">Imagen de Perfil</label>
+                <input type="file" class="form-control" id="profileImage" value="" name="profileImage">
+              </div>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-primary control w-50" id="saveProfileButton">
+              Guardar
+            </button>
+          </form>
+        </div>
       </div>
     </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -69,6 +165,7 @@
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
   <script src="js/usernameParse.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

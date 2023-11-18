@@ -3,10 +3,9 @@
 }
 
 .product-container {
-    width: 90vw;
     height: 250px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     border: 1px solid rgb(211, 211, 211);
     border-radius: 10px;
@@ -16,14 +15,14 @@
 }
 
 .product-img {
-    height: 170px;
-    width: 230px;
+    width: 20%;
 }
 
 .product-text {
     display: flex;
     flex-direction: column;
     font-family: sans-serif;
+    width: 500px;
 }
 
 .product-title {
@@ -53,13 +52,18 @@
         margin: auto 10px;
     }
     .product-img {
-        height: 130px;
-        width: 180px;
+        width: 20%;
     }
     .product-title {
         font-size: 1.15rem;
     }
     .product-description {
         font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .product-img {
+        width: 45%;
     }
 }
