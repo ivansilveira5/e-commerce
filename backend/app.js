@@ -67,7 +67,7 @@ app.post("/login", (req, res) => {
   }
 });
 
-// Middleware que autoriza a realizar peticiones a /people
+// Middleware que autoriza a realizar peticiones a /cartData
 app.use("/json/:foldername/:file.json", (req, res, next) => {
   try {
     const decoded = jwt.verify(req.headers["access-token"], SECRET_KEY);
@@ -78,10 +78,58 @@ app.use("/json/:foldername/:file.json", (req, res, next) => {
   }
 });
 
-
-
-
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
+});
+
+app.post("/product-info", (req, res) => {
+  /* La propiedad "body" del request permite acceder a los datos 
+       que se encuentran en el cuerpo de la petición */
+
+    cart.push(req.body); // Añadimos un nuevo elemento al array
+
+  res.json(req.body); // Le respondemos al cliente el objeto añadido
+});
+
+app.post("/cart", (req, res) => {
+  const userId = 25801; // ID de usuario para agregar al archivo correcto
+  const path = `./json/user_cart/${userId}.json`; // Dirección del archivo con el ID de usuario
+  const newData = req.body; // Datos enviados en la solicitud POST
+
+  fs.readFile(path, 'utf-8', (errorRead, data) => {
+    if (errorRead) {
+      console.error(errorRead);
+      console.log('Algo salió mal');
+      res.status(500).send('Error en la lectura del archivo');
+      return;
+    }
+
+    const cartData = JSON.parse(data); // Parsear los datos del carrito
+
+    // Encontrar el usuario por su ID o agregar uno nuevo si no existe
+    let userIndex = cartData.findIndex(user => user.user === userId);
+    if (userIndex === -1) {
+      cartData.push({
+        user: userId,
+        articles: []
+      });
+      userIndex = cartData.length - 1;
+    }
+
+    // Agregar los datos nuevos a la lista de artículos del usuario
+    cartData[userIndex].articles.push(newData);
+
+    // Escribir de vuelta al archivo
+    fs.writeFile(path, JSON.stringify(cartData), errorWrite => {
+      if (errorWrite) {
+        console.error(errorWrite);
+        console.log('Error al escribir el archivo');
+        res.status(500).send('Error al escribir en el archivo');
+      } else {
+        console.log('Actualizado!');
+        res.json(newData);
+      }
+    });
+  });
 });
 
