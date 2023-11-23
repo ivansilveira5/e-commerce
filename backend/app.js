@@ -26,7 +26,7 @@ app.use("/json/*", (req, res, next) => {
     console.log(decoded);
     next();
   } catch (err) {
-    res.status(401).json({ message: "Usuario no 11autorizado" });
+    res.status(401).json({ message: "Usuario no autorizado" });
   }
 });
 
