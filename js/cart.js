@@ -39,19 +39,23 @@ async function fetchData() {
   }
   console.log(fetchData());
 
+  // Esta función nos devuelve un valor actualizado de la cotización.
+  // Hace fetch a la API y devuelve un "rate" que se usa luego se usa para cambiar de pesos a USD dividiendo.
 function exchange(){
     return fetch(exchangeRateApiUrl)
     .then(response => response.json())
     .then(data => {
         const rates = data.rates;
-        const uyUstoUSD = rates.UYU;
+        const uyUstoUSD = rates.UYU; //rates contiene todas las conversiones a USD, usamos rates.UYU para entrar al cambio especifico en pesos uruguayos
         console.log(uyUstoUSD);
-        return uyUstoUSD
+        return uyUstoUSD // Devuelve el dividendo para cambiar
      }
     )
 }
 
-
+// Esta es la funcion que va creando las tarjetas de cada objeto en el carrito
+// Se usa async porque se corre exchange() que usa una petición, por lo que hay que esperar a que devuelva la promesa.
+// Se le da como parametro CART en linea 196 que contiene todos los productos.
   async function mostrarCarrito(array) {
         let articles = array;
         const rate = await exchange();
@@ -61,8 +65,8 @@ function exchange(){
             console.log(`Soy un costoEnUSD individual ${costoEnUSD}`)
 
             addEventListener("input", (UpdateValue) => {
-                obtenerValores()
-                inputEvents(element.id)
+                obtenerValores() //linea 165
+                inputEvents(element.id) //linea 182
             });
 
             user_cart.innerHTML +=
@@ -260,7 +264,7 @@ continuarButton.addEventListener("click", function(event){
     event.preventDefault();
 })
 
-(function () {
+(function () { 
     'use strict'
   
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
