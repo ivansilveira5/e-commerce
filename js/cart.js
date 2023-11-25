@@ -22,7 +22,7 @@ const continuarButton = document.getElementById("btnContinuarModal");
 let formaPago = false;
 
 
-async function fetchData() {
+async function fetchData() { // Se comprueba si ya hay un peugeot en el localstorage, de ser así se aumenta la cantidad, de lo contrario, se agrega al carrito.
     await fetch(CART_URL)
       .then((response) => response.json())
       .then((data) => {      
@@ -122,7 +122,7 @@ const radiooPremium = document.getElementById("premium");
 const radioExpress = document.getElementById("express");
 const radioStandar = document.getElementById("standar");
 
-// calculo del total
+// calculo del total, suma todos los valores, y los multiplica dependiendo el envío
 function calculoSubtotal(array) {
     let subtotal = [];
     let subtotalFinal = 0;
@@ -138,11 +138,11 @@ function calculoSubtotal(array) {
         }
         if(radioExpress.checked)
         {
-            porcentajeFinal += (radioExpress.value * result) / 10;
+            porcentajeFinal += (radioExpress.value * result);
         }
         if(radioStandar.checked)
         {
-            porcentajeFinal += (radioStandar.value * result) / 10;
+            porcentajeFinal += (radioStandar.value * result);
         }
     });
 
@@ -162,6 +162,8 @@ addEventListener("DOMContentLoaded", (event) => {
     obtenerValores();
 });
 
+// obtener valores se ocupa de comprobar que el precio este en USD, de lo contrario lo cambia
+// declara variable valores que contiene todos los valores en USD y sus unidades
 async function obtenerValores() { //dataNeeded es el array que debemos pasar como parámetro
     let valores = [];
     let localStItems =  JSON.parse(localStorage.getItem('local_Cart'));
@@ -206,7 +208,7 @@ creditcard.addEventListener("change", function () {
         expirationdate.disabled = false;
         expirationdate.style.backgroundColor = "";
         paymentStatusParagraph.textContent = "Tarjeta de crédito.";
-        paymentStatusParagraph.classList.add('text-muted')
+        paymentStatusParagraph.classList.add('text-muted');
     }
 });
 
