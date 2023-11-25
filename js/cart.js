@@ -20,7 +20,6 @@ const paymentStatusParagraph = document.getElementById("paymentStatus");
 const buyButton = document.getElementById("buy_button");
 const continuarButton = document.getElementById("btnContinuarModal");
 let formaPago = false;
-let token = JSON.parse(localStorage.getItem("token"));
 
 async function fetchData() {
     await fetch(CART_URL, {headers: {

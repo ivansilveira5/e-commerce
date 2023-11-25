@@ -5,6 +5,7 @@ let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
+let tokenInit = JSON.parse(localStorage.getItem("token"));
 
 function sortCategories(criteria, array){
     let result = [];

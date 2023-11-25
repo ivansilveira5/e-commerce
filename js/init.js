@@ -6,6 +6,7 @@ const PRODUCT_INFO_COMMENTS_URL = "http://localhost:4700/json/products_comments/
 const CART_INFO_URL = "http://localhost:4700/json/user_cart/";
 const CART_BUY_URL = "http://localhost:4700/json/cart/buy.json";
 const EXT_TYPE = ".json";
+let token = JSON.parse(localStorage.getItem("token"));
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -18,7 +19,10 @@ let hideSpinner = function(){
 let getJSONData = function(url){
     let result = {};
     showSpinner();
-    return fetch(url)
+    return fetch(url,{headers: {
+      "Content-Type": "application/json",
+      "access-token": token
+      },})
     .then(response => {
       if (response.ok) {
         return response.json();

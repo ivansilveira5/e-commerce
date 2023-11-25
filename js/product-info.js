@@ -13,7 +13,10 @@ const CART_URL = "http://localhost:4700/json/user_cart/25801.json";
 let currentProduct;
 
 async function fetchData() {
-  await fetch(PRODUCT_URL)
+  await fetch(PRODUCT_URL, {headers: {
+    "Content-Type": "application/json",
+    "access-token": token
+    },})
     .then((response) => response.json())
     .then((data) => {      
       console.log(data);
@@ -180,9 +183,17 @@ function createComments(array) {
 
   //Agregar al carrito
 
-  function addToCart() {
+  async function addToCart() {
     
-    const currentCart = JSON.parse(localStorage.getItem("local_Cart")) || [];
+    const currentCart = [];
+
+      await fetch(CART_URL, {headers: {
+          "Content-Type": "application/json",
+          "access-token": token 
+          },})
+        .then((response) => response.json())
+        .then((data) => {  console.log(data)  })
+        .catch("error");
     
     const currentProductId = currentProduct.id;
     const existingArticle = currentCart.find(article => article.id === currentProductId);

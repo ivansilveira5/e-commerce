@@ -33,7 +33,10 @@ function redirect(itemId){
   window.location.href="product-info.html"
 }
 
-fetch(DATA_URL)
+fetch(DATA_URL, {headers: {
+  "Content-Type": "application/json",
+  "access-token": token
+  },})
   .then((response) => response.json())
   .then((data) => {
     filterData = data.products;
