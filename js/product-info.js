@@ -8,7 +8,9 @@ const local_cart = localStorage.getItem("local_cart")
 
 const PRODUCT_URL = `http://localhost:4700/json/products/${id}.json`;
 const PRODUCT_COMMENTS = `http://localhost:4700/json/products_comments/${id}.json`;
-const CART_URL = "http://localhost:4700/json/user_cart/25801.json";
+const CART_URL = "http://localhost:4700/cart";
+
+const tokeninit = JSON.parse(localStorage.getItem("token"));
 
 let currentProduct;
 
@@ -64,7 +66,11 @@ Obj.images.map((image)=> {
 }
 
 function fetchComments() {
-   fetch(PRODUCT_COMMENTS)
+   fetch(PRODUCT_COMMENTS, {headers: {
+    "Content-Type": "application/json",
+    "access-token": token
+    }})
+   
     .then((response) => response.json())
     .then((dataComments) => {
       createComments(dataComments);
@@ -185,20 +191,31 @@ function createComments(array) {
 
   async function addToCart() {
     
-    const currentCart = [];
+    const newArticle = {
+      "id": currentProduct.id,
+      "name": currentProduct.name,
+      "count": 1,
+      "unitCost": currentProduct.cost,
+      "currency": currentProduct.currency,
+      "image": currentProduct.images[0]
+      };
 
-      await fetch(CART_URL, {headers: {
+    const currentCart = [];
+      await fetch(CART_URL, {
+        method: "POST",
+        headers: {
           "Content-Type": "application/json",
-          "access-token": token 
-          },})
+          "access-token": tokeninit 
+          },
+          body: JSON.stringify(newArticle),})
         .then((response) => response.json())
-        .then((data) => {  console.log(data)  })
+        .then((data) => {  console.log("Que ricas que estaban las papas", data)  })
         .catch("error");
     
     const currentProductId = currentProduct.id;
     const existingArticle = currentCart.find(article => article.id === currentProductId);
 
-    if (existingArticle) {
+    /* if (existingArticle) {
         // Si el artículo ya existe en el carrito, aumenta el count en 1
         existingArticle.count += 1;
          Swal.fire({
@@ -222,8 +239,8 @@ function createComments(array) {
           icon: "success",
           title: "¡Se agregó el producto al carrito de compras!",
           confirmButtonText: "Aceptar"
-          });
+          }); 
     }
 
-    localStorage.setItem("local_Cart", JSON.stringify(currentCart));
+    localStorage.setItem("local_Cart", JSON.stringify(currentCart)); */
 }

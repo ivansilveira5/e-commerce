@@ -1,7 +1,6 @@
 CART_URL = "http://localhost:4700/json/user_cart/25801.json";
 user_cart = document.getElementById("user_cart");
 const exchangeRateApiUrl = "https://api.exchangerate-api.com/v4/latest/USD";
-CART = JSON.parse(localStorage.getItem("local_Cart"));
 const buyForm = document.getElementById("buy_form");
 const buyModal = document.getElementById("buy_modal");
 const calle = document.getElementById("calle");
@@ -21,25 +20,6 @@ const buyButton = document.getElementById("buy_button");
 const continuarButton = document.getElementById("btnContinuarModal");
 let formaPago = false;
 
-async function fetchData() {
-    await fetch(CART_URL, {headers: {
-        "Content-Type": "application/json",
-        "access-token": token 
-        },})
-      .then((response) => response.json())
-      .then((data) => {      
-        let dataPeugeot = data.articles[0];
-        let localStoragePeugeot = JSON.parse(localStorage.getItem("local_Cart"))
-        let filterPeugeot = localStoragePeugeot.filter((obj) => obj.id == dataPeugeot.id);
-        console.log(dataPeugeot)
-        if(filterPeugeot.length == 0){
-            localStoragePeugeot.push(dataPeugeot);
-            localStorage.setItem('local_Cart', JSON.stringify(localStoragePeugeot));
-        } else (console.log('ya existe el peugeot'))
-      })
-      .catch("error");
-  }
-  console.log(fetchData());
 
 function exchange(){
     return fetch(exchangeRateApiUrl)
@@ -53,8 +33,19 @@ function exchange(){
     )
 }
 
+ let cartJson ;
+    fetch(CART_URL, {headers: {
+        "Content-Type": "application/json",
+        "access-token": token
+        }})
+    .then(response => response.json())
+    .then(data => {
+        mostrarCarrito(data[0].articles);
+     }
+     
+    )
 
-  async function mostrarCarrito(array) {
+async function mostrarCarrito(array) {
         let articles = array;
         const rate = await exchange();
         articles.forEach(async element => {
@@ -105,12 +96,13 @@ function exchange(){
             deleteButton.addEventListener("click", () => {
              const productId= deleteButton.getAttribute("data-id")
              console.log(productId)
-             const currentData = JSON.parse(localStorage.getItem('local_Cart'))
-             console.log(currentData)
-             const newData = currentData.filter((e) => e.id != productId)
-                console.log(newData)
-                localStorage.setItem("local_Cart", JSON.stringify(newData));
-                location.reload() 
+             fetch(`http://localhost:4700/cart/${productId}`,{
+             method: "DELETE",   
+             headers: {
+                "Content-Type": "application/json",
+                "access-token": token
+                }})
+            location.reload() 
             })
     })
     .catch(error => console.error("Error al obtener tasas de cambio:", error));
@@ -191,7 +183,7 @@ function inputEvents(expectedId){
     obtenerValores();
 }
 
-mostrarCarrito(CART);
+
 
 creditcard.addEventListener("change", function () {
     if (creditcard.checked) {

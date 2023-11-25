@@ -107,17 +107,21 @@ app.post("/cart", (req, res) => {
     const cartData = JSON.parse(data); // Parsear los datos del carrito
 
     // Encontrar el usuario por su ID o agregar uno nuevo si no existe
-    let userIndex = cartData.findIndex(user => user.user === userId);
-    if (userIndex === -1) {
-      cartData.push({
-        user: userId,
-        articles: []
-      });
-      userIndex = cartData.length - 1;
-    }
-
-    // Agregar los datos nuevos a la lista de artículos del usuario
-    cartData[userIndex].articles.push(newData);
+    let user = cartData.find(user => user.user === userId);
+if (!user) {
+  user = {
+    user: userId,
+    articles: []
+  };
+  cartData.push(user);
+}
+// agrega la nueva data a la lista del carrito
+let existingArticle = user.articles.find(article => article.id === newData.id);
+if (existingArticle) {
+  existingArticle.count += 1;
+} else {
+  user.articles.push({...newData, count: 1});
+}
 
     // Escribir de vuelta al archivo
     fs.writeFile(path, JSON.stringify(cartData), errorWrite => {
@@ -131,5 +135,46 @@ app.post("/cart", (req, res) => {
       }
     });
   });
+});
+
+app.delete("/cart/:objid", (req, res) => {
+  const userId = 25801; // ID de usuario para agregar al archivo correcto
+  const path = `./json/user_cart/${userId}.json`;
+  const deleteid = parseInt(req.params.objid);
+  
+  
+
+  fs.readFile(path, 'utf-8', function(errorRead, data){
+    
+    if (errorRead) {
+      console.error(errorRead);
+      console.log('Algo salió mal');
+      res.status(500).send('Error en la lectura del archivo');
+      return;
+    }
+
+    const dataObj = JSON.parse(data);
+    const cartdelete = dataObj[0].articles;
+    const index = cartdelete.findIndex(item => item.id == deleteid);
+    
+    
+    if(index >= 0 && index < cartdelete.length){
+      cartdelete.splice(index, 1);
+    
+      fs.writeFile(path, JSON.stringify(dataObj), function(errorWrite) {
+        if(errorWrite){
+          console.error(errorWrite);
+          console.log('Error al escribir en el archivo');
+          res.status(500).send('Error al escribir en el archivo');
+        } else{
+          console.log('Eliminado con éxito');
+          res.json(cartdelete)
+        }
+      })
+    } else {
+      console.log('Índice fuera de rango');
+      res.status(400).send('Índice fuera de rango')
+    }
+  })
 });
 
